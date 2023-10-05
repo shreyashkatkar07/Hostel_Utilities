@@ -2,7 +2,7 @@ import React from 'react'
 
 const FileComplaint = () => {
   return (
-    <div>To file complaint</div>
+    <div className='w-[100%] bg-gray-800 text-white'>To file complaint</div>
   )
 }
 

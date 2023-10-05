@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4">
           <span className="text-white">
-            Bienvenido</span>
+            Login</span>
           <i className="fas fa-user-circle text-white text-2xl"></i>
         </div>
       </nav>
