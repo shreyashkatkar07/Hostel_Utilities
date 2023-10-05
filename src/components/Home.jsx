@@ -9,10 +9,10 @@ const Home = () => {
   return (
     <>
       <div className="home w-[100%] bg-gray-800 text-white flex">
-        <div className="flex">
-          <div className=" w-[100%]  p-12">
+        <div className="flex flex-wrap flex-row w-[100%] justify-center lg:justify-normal">
+          <div className="h-[420px] p-12">
             <Link to="/filecomplaint">
-              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg min-h-[300px] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
+              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
                 <div className="px-6 py-4 h-full pt-[55px]">
                   <img src={comp} alt="comp" className=" h-[150px]" />
                 </div>
@@ -22,9 +22,9 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards w-[100%] p-12">
+          <div className="cards h-[420px] p-12">
             <Link to="/guestroombook">
-              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg min-h-[300px] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
+              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
                 <div className="px-6 py-4 h-full pt-[55px]">
                   <img src={guest} alt="guest" className=" h-[150px]" />
                 </div>
@@ -34,9 +34,9 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards w-[100%] p-12">
+          <div className="cards h-[420px] p-12">
             <Link to="/guestroombook">
-              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg min-h-[300px] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
+              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
                 <div className="px-6 py-4 h-full pt-[55px]">
                   <img src={leave} alt="leave" className=" h-[150px]" />
                 </div>
@@ -46,9 +46,9 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards w-[100%] p-12">
+          <div className="cards h-[420px]  p-12">
             <Link to="/guestroombook">
-              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg min-h-[300px] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
+              <div className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col">
                 <div className="px-6 py-4 h-full pt-[55px]">
                   <img src={mcomp} alt="mcomp" className=" h-[150px]" />
                 </div>

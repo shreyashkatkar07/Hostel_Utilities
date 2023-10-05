@@ -11,13 +11,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-      <div>
+      <div className="min-h-screen">
         <Router>
           <Navbar />
           <div
-            className="flex"
+            className="flex min-h-[calc(100vh-80px)]"
             style={{
               fontFamily: "'EB Garamond', serif",
+              minHeight:"calc(100vh-80px)"
             }}
           >
             <SideNav />
@@ -31,7 +32,6 @@ function App() {
           </div>
         </Router>
       </div>
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
     </>
   );
 }
