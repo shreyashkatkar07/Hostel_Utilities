@@ -14,7 +14,12 @@ function App() {
       <div>
         <Router>
           <Navbar />
-          <div className="flex">
+          <div
+            className="flex"
+            style={{
+              fontFamily: "'EB Garamond', serif",
+            }}
+          >
             <SideNav />
             <Routes>
               <Route exact path="/" Component={Home} />
