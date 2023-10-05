@@ -10,7 +10,7 @@ const SideNav = () => {
   return (
     <>
       {/* sidenav */}
-      <aside className="bg-white text-gray-800 w-64 min-h-screen hidden md:block">
+      <aside className="bg-white text-gray-800 w-64 hidden md:block">
         <nav>
           <ul className="space-y-2">
             <li className="opcion-con-desplegable">
