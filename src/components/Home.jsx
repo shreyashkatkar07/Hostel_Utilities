@@ -52,7 +52,7 @@ const Home = () => {
                 <div className="px-6 py-4 h-full pt-[55px]">
                   <img src={mcomp} alt="mcomp" className=" h-[150px]" />
                 </div>
-                <div className="px-6  bg-[#f03a71] w-[100%] h-[50px] flex justify-center items-center text-white text-2xl">
+                <div className="px-6  bg-[#0bc1fb] w-[100%] h-[50px] flex justify-center items-center text-white text-2xl">
                   <p>My Complaints</p>
                 </div>
               </div>
