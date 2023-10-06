@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import ApplyLeave from "./components/ApplyLeave";
 import FileComplaint from "./components/FileComplaint";
@@ -9,19 +10,26 @@ import SideNav from "./components/SideNav";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [isOp, setIsOp] = useState(true);
+  const getIsOpen = (isOpen) => {
+    // console.log(isOpen);
+    setIsOp(isOpen);
+  };
+  console.log(isOp);
+
   return (
     <>
       <div className="min-h-screen">
         <Router>
-          <Navbar />
+          <Navbar onclic={getIsOpen} />
           <div
-            className="flex min-h-[calc(100vh-80px)]"
+            className="flex min-h-[calc(100vh-80px)] overflow-hidden"
             style={{
               fontFamily: "'EB Garamond', serif",
-              minHeight:"calc(100vh-80px)"
+              minHeight: "calc(100vh-80px)",
             }}
           >
-            <SideNav />
+            <SideNav isOpen={!isOp} />
             <Routes>
               <Route exact path="/" Component={Home} />
               <Route exact path="/filecomplaint" Component={FileComplaint} />
