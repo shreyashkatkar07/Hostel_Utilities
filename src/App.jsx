@@ -15,13 +15,13 @@ function App() {
     // console.log(isOpen);
     setIsOp(isOpen);
   };
-  console.log(isOp);
+  // console.log(isOp);
 
   return (
     <>
       <div className="min-h-screen flex flex-col">
         <Router>
-          <Navbar onclic={getIsOpen} />
+          <Navbar onclic={getIsOpen} isOp={isOp} />
           <div
             className="flex min-h-[calc(100vh-80px)] w-[100%]"
             style={{
@@ -29,7 +29,7 @@ function App() {
               minHeight: "calc(100vh-80px)",
             }}
           >
-            <SideNav isOpen={!isOp} />
+            <SideNav isOpen={!isOp} setIsOp={setIsOp} />
             <Routes>
               <Route exact path="/" Component={Home} />
               <Route exact path="/filecomplaint" Component={FileComplaint} />

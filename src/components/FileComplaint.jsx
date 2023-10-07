@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const FileComplaint = () => {
   return (
     <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
-      {/* <center style={{fontSize: 'xx-large',color:'white'}}>Filing a complaint</center> */}
       <br />
       <center>
         <div
@@ -19,15 +18,13 @@ const FileComplaint = () => {
           }}
         >
           <div className="path p-2 flex items-center text-xl header">
-          <img src={homeimg} alt="home" />
-          <p className="pl-4 text-3xl"><Link to="/"> Home </Link>/ File a complaint</p>
-        </div> 
+            <img src={homeimg} alt="home" />
+            <p className="pl-4 text-3xl">
+              <Link to="/"> Home </Link>/ File a complaint
+            </p>
+          </div>
         </div>
       </center>
-      {/* <div className="path p-2 flex items-center text-xl">
-          <img src={homeimg} alt="home" />
-          <p className="pl-4">Home / My Complaints</p>
-        </div> */}
       <br />
       <div className="flex justify-center">
         <div className=" w-[90%] bg-slate-100" style={{ borderRadius: "10px" }}>
@@ -59,7 +56,7 @@ const FileComplaint = () => {
                       marginLeft: "0.5vw",
                       minWidth: "122px",
                       borderRadius: "10px",
-                      color:'black'
+                      color: "black",
                     }}
                   >
                     <option value="cleaning">Cleaning</option>
@@ -80,7 +77,7 @@ const FileComplaint = () => {
                       minWidth: "122px",
                       textAlign: "center",
                       borderRadius: "10px",
-                      color:'black'
+                      color: "black",
                     }}
                     required
                   />
@@ -94,8 +91,8 @@ const FileComplaint = () => {
                     marginLeft: "1vw",
                     borderRadius: "10px",
                     width: "40%",
-                    color:'black',
-                    padding:'10px'
+                    color: "black",
+                    padding: "10px",
                   }}
                   name="description"
                   id="description"
@@ -114,7 +111,7 @@ const FileComplaint = () => {
               <br />
               <center>
                 <button
-                className=" bg-blue-600 hover:bg-blue-700"
+                  className=" bg-blue-600 hover:bg-blue-700"
                   type="submit"
                   style={{
                     // backgroundColor: "#3b82f6",
