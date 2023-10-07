@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import homeimg from "./../assets/svg/Home-white.png";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FileComplaint = () => {
   return (
@@ -19,7 +20,7 @@ const FileComplaint = () => {
         >
           <div className="path p-2 flex items-center text-xl header">
           <img src={homeimg} alt="home" />
-          <p className="pl-4 text-3xl">Home / My Complaints</p>
+          <p className="pl-4 text-3xl"><Link to="/"> Home </Link>/ File a complaint</p>
         </div> 
         </div>
       </center>

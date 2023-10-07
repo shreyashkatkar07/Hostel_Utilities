@@ -7,7 +7,7 @@
 .header
 {
     position: relative;
-    animation-name: xyz,xyz2;
+    animation-name: xyz;
     animation-duration: 1s;
 }
 @keyframes xyz
@@ -15,8 +15,3 @@
     0%{opacity: 0};
     100%{opacity: 1};
 }
-/* @keyframes xyz2
-{
-    0%{top: -500px};
-    100%{top: 0px};
-} */
