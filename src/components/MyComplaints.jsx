@@ -4,7 +4,7 @@ import homeimg from "./../assets/svg/Home-white.png";
 const MyComplaints = () => {
   return (
     <>
-      <div className="w-[100%] bg-gray-800 text-white lg:p-8 p-1">
+      <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         <div className="path p-2 flex items-center text-xl">
           <img src={homeimg} alt="home" />
           <p className="pl-4">Home / My Complaints</p>

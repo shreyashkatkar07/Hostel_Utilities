@@ -3,7 +3,7 @@ import React from 'react'
 const GuestRoomBook = () => {
   return (
     <>
-        <div className='w-[100%] bg-gray-800 text-white'>To book guest room</div>
+        <div className='md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1'>To book guest room</div>
     </>
   )
 }

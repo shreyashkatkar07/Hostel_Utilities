@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      <div className="home w-[100%] bg-gray-800 text-white flex">
+      <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         <div className="flex flex-wrap flex-row w-[100%] justify-center lg:justify-normal">
-          <div className="h-[420px] p-12">
+          <div className="h-[420px] p-10">
             <Link to="/filecomplaint">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col"
@@ -28,7 +28,7 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards h-[420px] p-12">
+          <div className="cards h-[420px] p-10">
             <Link to="/guestroombook">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col"
@@ -46,7 +46,7 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards h-[420px] p-12">
+          <div className="cards h-[420px] p-10">
             <Link to="/guestroombook">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col"
@@ -64,7 +64,7 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className="cards h-[420px]  p-12">
+          <div className="cards h-[420px]  p-10">
             <Link to="/guestroombook">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col"
