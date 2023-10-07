@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import homeimg from "./../assets/svg/Home-black.png";
 import comp from "./../assets/svg/File_dock_add_fill.svg";
@@ -6,15 +6,29 @@ import leaveico from "./../assets/svg/File_dock_fill.svg";
 import guest from "./../assets/svg/UsersFour.svg";
 import mcomp from "./../assets/svg/Folder_file_alt_diuotone_fill.svg";
 
-const SideNav = () => {
+const SideNav = (props) => {
+  let isOpen = props.isOpen;
+  // console.log(isO);
+
+  const chnav = () => {
+    isOpen = false;
+  };
+
   return (
     <>
       {/* sidenav */}
-      <aside className="bg-white text-gray-800 w-64 hidden md:block">
+      <aside
+        id="navi"
+        className={`bg-white text-gray-800 md:w-64 md:block  ${
+          isOpen
+            ? " block fixed md:static left-0 h-[100vh] w-[100vw] pt-0 z-50 duration-300 overflow-hidden"
+            : " md:static fixed md:left-0 left-[-100vw] "
+        }`}
+      >
         <nav>
           <ul className="space-y-2">
             <li className="opcion-con-desplegable">
-              <Link to="/">
+              <Link to="/" onClick={chnav}>
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={homeimg} alt="home" />
@@ -28,7 +42,9 @@ const SideNav = () => {
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={comp} alt="comp" />
-                    <span className=" px-4 font-bold text-xl">File a complaint</span>
+                    <span className=" px-4 font-bold text-xl">
+                      File a complaint
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -38,7 +54,9 @@ const SideNav = () => {
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={guest} alt="guest" />
-                    <span className=" px-4 font-bold text-xl">Guest Room Booking</span>
+                    <span className=" px-4 font-bold text-xl">
+                      Guest Room Booking
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -47,8 +65,10 @@ const SideNav = () => {
               <Link to="/applyforleave">
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
-                  <img src={leaveico} alt="leaveico" />
-                    <span className=" px-4 font-bold text-xl">Apply for leave</span>
+                    <img src={leaveico} alt="leaveico" />
+                    <span className=" px-4 font-bold text-xl">
+                      Apply for leave
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -57,8 +77,10 @@ const SideNav = () => {
               <Link to="/mycomplaints">
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
-                  <img src={mcomp} alt="mcomp" />
-                    <span className=" px-4 font-bold text-xl">My Complaints</span>
+                    <img src={mcomp} alt="mcomp" />
+                    <span className=" px-4 font-bold text-xl">
+                      My Complaints
+                    </span>
                   </div>
                 </div>
               </Link>
