@@ -6,6 +6,7 @@ const Navbar = (props) => {
   const genericHamburgerLine = `h-[3px] w-6 my-[2px] rounded-full bg-white transition ease transform duration-300`;
   const onclick = () => {
     props.onclic(isOpen);
+    setIsOpen(props.isOpen)
   };
   // console.log(isOpen);
 
