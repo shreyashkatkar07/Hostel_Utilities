@@ -25,7 +25,7 @@ const SideNav = (props) => {
         <nav>
           <ul className="space-y-2">
             <li className="opcion-con-desplegable">
-              <Link to="/" onClick={()=>{props.setIsOp(!props.isOp)}} >
+              <Link to="/" onClick={()=>{props.setIsOp(props.isOpen)}} >
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={homeimg} alt="home" />
@@ -35,7 +35,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className="opcion-con-desplegable">
-              <Link to="/filecomplaint" onClick={()=>{props.setIsOp(!props.isOp)}}>
+              <Link to="/filecomplaint" onClick={()=>{props.setIsOp(props.isOpen)}}>
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={comp} alt="comp" />
@@ -47,7 +47,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className="opcion-con-desplegable">
-              <Link to="/guestroombook" onClick={()=>{props.setIsOp(!props.isOp)}}>
+              <Link to="/guestroombook" onClick={()=>{props.setIsOp(props.isOpen)}}>
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={guest} alt="guest" />
@@ -59,7 +59,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className="opcion-con-desplegable">
-              <Link to="/applyforleave" onClick={()=>{props.setIsOp(!props.isOp)}}>
+              <Link to="/applyforleave" onClick={()=>{props.setIsOp(props.isOpen)}}>
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={leaveico} alt="leaveico" />
@@ -71,7 +71,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className="opcion-con-desplegable">
-              <Link to="/mycomplaints" onClick={()=>{props.setIsOp(!props.isOp)}}>
+              <Link to="/mycomplaints" onClick={()=>{props.setIsOp(props.isOpen)}}>
                 <div className="flex items-center justify-between p-4 hover:bg-gray-300 hover:text-black text-xl">
                   <div className="flex items-center">
                     <img src={mcomp} alt="mcomp" />
