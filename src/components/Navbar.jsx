@@ -10,9 +10,9 @@ const Navbar = (props) => {
   // console.log(isOpen);
 
   return (
-    <div className="">
+    <>
       {/* Topnav */}
-      <nav className="bg-blue-500 md:px-20 px-6 py-4 flex items-center justify-between ">
+      <nav className="bg-blue-500 md:px-20 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div>
           <h1
             className="text-white lg:text-5xl md:text-3xl text-3xl font-semibold lobster"
@@ -65,7 +65,7 @@ const Navbar = (props) => {
           </span>
         </div>
       </nav>
-    </div>
+    </>
   );
 };
 

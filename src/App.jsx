@@ -19,11 +19,11 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen flex flex-col">
         <Router>
           <Navbar onclic={getIsOpen} />
           <div
-            className="flex min-h-[calc(100vh-80px)] overflow-hidden"
+            className="flex min-h-[calc(100vh-80px)] w-[100%]"
             style={{
               fontFamily: "'EB Garamond', serif",
               minHeight: "calc(100vh-80px)",

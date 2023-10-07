@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
-      <div className="home w-[100%] bg-gray-800 text-white flex">
+      <div className="md:w-[80vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         <div className="flex flex-wrap flex-row w-[100%] justify-center lg:justify-normal">
           <div className="h-[420px] p-12">
             <Link to="/filecomplaint">
