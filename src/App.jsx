@@ -15,13 +15,13 @@ function App() {
     // console.log(isOpen);
     setIsOp(isOpen);
   };
-  // console.log(isOp);
+  console.log(isOp);
 
   return (
     <>
       <div className="min-h-screen flex flex-col">
         <Router>
-          <Navbar onclic={getIsOpen} isOp={isOp} />
+          <Navbar onclic={getIsOpen} isOp={!isOp} />
           <div
             className="flex min-h-[calc(100vh-80px)] w-[100%]"
             style={{
