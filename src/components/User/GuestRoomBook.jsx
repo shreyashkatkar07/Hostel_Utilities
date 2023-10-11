@@ -1,5 +1,5 @@
 import React from "react";
-import homeimg from "./../assets/svg/Home-white.png";
+import homeimg from "./../../assets/svg/Home-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

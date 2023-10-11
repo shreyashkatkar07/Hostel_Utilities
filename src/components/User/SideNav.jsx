@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import homeimg from "./../assets/svg/Home-black.png";
-import comp from "./../assets/svg/File_dock_add_fill.svg";
-import leaveico from "./../assets/svg/File_dock_fill.svg";
-import guest from "./../assets/svg/UsersFour.svg";
-import mcomp from "./../assets/svg/Folder_file_alt_diuotone_fill.svg";
+import homeimg from "./../../assets/svg/Home-black.png";
+import comp from "./../../assets/svg/File_dock_add_fill.svg";
+import leaveico from "./../../assets/svg/File_dock_fill.svg";
+import guest from "./../../assets/svg/UsersFour.svg";
+import mcomp from "./../../assets/svg/Folder_file_alt_diuotone_fill.svg";
 
 const SideNav = (props) => {
   // console.log(props.isOpen)
   return (
     <>
       {/* sidenav */}
-      <aside
+      <div
         id="navi"
-        className={`bg-white text-gray-800 md:w-[15vw] md:block fixed w-[20vw] ${
+        className={`bg-white text-gray-800 md:w-[15vw] md:block fixed w-[20vw] h-[100%] ${
           props.isOpen
             ? " block fixed md:static left-0 h-[100vh] pt-0 z-50 duration-300 overflow-hidden w-full"
             : " fixed md:left-0 left-[-100vw] "
@@ -21,6 +21,34 @@ const SideNav = (props) => {
       >
         <nav>
           <ul className="space-y-2">
+            <li className="opcion-con-desplegable">
+              <Link
+                to="/login"
+                onClick={() => {
+                  props.setIsOp(props.isOpen);
+                }}
+              >
+                <div className=" md:hidden flex items-center justify-center p-4 transition-all duration-600 hover:bg-gray-300 hover:text-black text-xl">
+                  <div className="flex items-center justify-center">
+                    <span className=" px-4 font-bold text-xl">Login</span>
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li className="opcion-con-desplegable">
+              <Link
+                to="/signup"
+                onClick={() => {
+                  props.setIsOp(props.isOpen);
+                }}
+              >
+                <div className=" md:hidden flex items-center justify-center p-4 transition-all duration-600 hover:bg-gray-300 hover:text-black text-xl">
+                  <div className="flex items-center justify-center">
+                    <span className=" px-4 font-bold text-xl">Signup</span>
+                  </div>
+                </div>
+              </Link>
+            </li>
             <li className="opcion-con-desplegable">
               <Link
                 to="/"
@@ -106,7 +134,7 @@ const SideNav = (props) => {
             </li>
           </ul>
         </nav>
-      </aside>
+      </div>
     </>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import comp from "./../assets/svg/Subtract.svg";
-import leave from "./../assets/svg/Subtract(1).svg";
-import guest from "./../assets/svg/UsersFour(1).svg";
-import mcomp from "./../assets/svg/Folder_file_alt_diuotone_fill(1).svg";
+import comp from "./../../assets/svg/Subtract.svg";
+import leave from "./../../assets/svg/Subtract(1).svg";
+import guest from "./../../assets/svg/UsersFour(1).svg";
+import mcomp from "./../../assets/svg/Folder_file_alt_diuotone_fill(1).svg";
 import { Link } from "react-router-dom";
 
 const Home = () => {
