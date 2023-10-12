@@ -6,7 +6,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 const ApplyLeave = () => {
   return (
     <>
-      <div className="w-[100%] bg-gray-800 text-white">
+      <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         <div className="img mx-4 my-3 w-[100%] flex items-center">
           <FontAwesomeIcon
             icon={faHouse}
@@ -191,7 +191,7 @@ const ApplyLeave = () => {
                       name="agreement"
                       value="agreement"
                     />
-                    <label for="agreement">
+                    <label htmlFor="agreement">
                       {" "}
                       Declaration : Yes, I agree that I have taken the consent
                       of my parents for this leave and I will be responsible for
@@ -202,7 +202,7 @@ const ApplyLeave = () => {
                   <div className="btn flex justify-center items-center">
                     <button
                       type="submit"
-                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
                       Submit
                     </button>

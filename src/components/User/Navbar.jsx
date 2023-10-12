@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import userf from "./../assets/svg/User_fill(1).svg";
+import userf from "./../../assets/svg/User_fill(1).svg";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const genericHamburgerLine = `h-[3px] w-6 my-[2px] rounded-full bg-white transition ease transform duration-300`;
   const onclick = () => {
     props.onclic(isOpen);
-    setIsOpen(props.isOpen);
+    setIsOpen(!props.isOpen);
+    setIsOpen(!isOpen);
   };
   // console.log(isOpen);
 
@@ -56,14 +58,24 @@ const Navbar = (props) => {
         </div>
         <div className="md:flex hidden items-center space-x-4">
           <img src={userf} alt="userf" />
-          <span
-            className="text-white text-2xl"
+          <Link
+            to="/login"
+            className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
             style={{
               fontFamily: "'EB Garamond', serif",
             }}
           >
             Login
-          </span>
+          </Link>
+          <Link
+            to="/signup"
+            className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
+            style={{
+              fontFamily: "'EB Garamond', serif",
+            }}
+          >
+            Signup
+          </Link>
         </div>
       </nav>
     </>
