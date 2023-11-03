@@ -6,9 +6,11 @@ const MyComplaints = () => {
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
+        <div className="mx-24">
         <div className="path p-2 flex items-center text-xl header">
           <img src={homeimg} alt="home" />
-          <p className="pl-4"><Link to="/"> Home </Link> / My Complaints</p>
+          <p className="pl-4 text-3xl"><Link to="/"> Home </Link> / My Complaints</p>
+        </div>
         </div>
         {/* To be done through map */}
         <div className="complaints lg:p-6 p-2 text-black lg:text-2xl flex items-center flex-col">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import homeimg from "./../../assets/svg/Home-black.png";
 import comp from "./../../assets/svg/File_dock_add_fill.svg";
