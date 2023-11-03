@@ -8,13 +8,14 @@ const GuestRoomBook = () => {
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
-        <center>
+        {/* <center> */}
           <div
             style={{
-              width: "90%",
-              textAlign: "left",
-              fontSize: "x-large",
-              color: "white",
+              // width: "90%",
+              // textAlign: "left",
+              // fontSize: "x-large",
+              // color: "white",
+              padding:"0px 77px"
             }}
           >
             <div className="path p-2 flex items-center text-xl header">
@@ -24,7 +25,7 @@ const GuestRoomBook = () => {
               </p>
             </div>
           </div>
-        </center>
+        {/* </center> */}
         <br />
         <div className="flex justify-center">
           <div
