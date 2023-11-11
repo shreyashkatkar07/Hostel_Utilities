@@ -51,7 +51,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/homepage"
+                to="/Admin/Homepage"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -117,7 +117,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/StudentRecord"
+                to="/Admin/StudentRecords"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -126,7 +126,7 @@ const SideNav = (props) => {
                   <div className="flex items-center">
                     <img src={mcomp} alt="mcomp" />
                     <span className=" px-4 font-bold text-xl">
-                      Student Record
+                      Student Records
                     </span>
                   </div>
                 </div>
