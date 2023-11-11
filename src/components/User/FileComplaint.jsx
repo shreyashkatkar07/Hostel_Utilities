@@ -52,13 +52,15 @@ const FileComplaint = () => {
                     id="category"
                     style={{
                       textAlign: "center",
-                      width: "25%",
+                      width: "13rem",
                       marginLeft: "0.5vw",
                       minWidth: "122px",
                       borderRadius: "10px",
                       color: "black",
                     }}
+                    required
                   >
+                    <option value="none">Select category</option>
                     <option value="cleaning">Cleaning</option>
                     <option value="electricity">Electricity</option>
                     <option value="water">Water</option>
@@ -104,7 +106,7 @@ const FileComplaint = () => {
               <br />
               <form action="/action_page.php">
                 <label>Complaint photo/video :</label>&nbsp;&nbsp;
-                <input type="file" id="myFile" name="filename" />
+                <input type="file" id="myFile" name="filename" required/>
                 {/* <br/> 
                 <input type="submit" value='Submit' style={{backgroundColor:'#3b82f6'}}/> */}
               </form>

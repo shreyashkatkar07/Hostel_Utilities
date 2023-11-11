@@ -89,10 +89,11 @@ const ApplyLeave = () => {
                         className="rounded-md p-2 w-[15rem] text-black mx-1"
                         required
                       >
-                        <option value="none">Prefer not to say</option>
+                        <option value="none">Select your gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="transgender">Transgender</option>
+                        <option value="none">Prefer not to say</option>
                       </select>
                     </div>
                     <div className="program my-5">

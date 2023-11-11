@@ -33,13 +33,21 @@ function App() {
           >
             <SideNav isOpen={!isOp} setIsOp={setIsOp} />
             <Routes>
-              <Route exact path="/" Component={Home} />
-              <Route exact path="/login" Component={Login} />
-              <Route exact path="/signup" Component={Signup} />
-              <Route exact path="/filecomplaint" Component={FileComplaint} />
-              <Route exact path="/guestroombook" Component={GuestRoomBook} />
-              <Route exact path="/applyforleave" Component={ApplyLeave} />
-              <Route exact path="/mycomplaints" Component={MyComplaints} />
+              <Route exact path="/user/home" Component={Home} />
+              <Route exact path="/user/login" Component={Login} />
+              <Route exact path="/user/signup" Component={Signup} />
+              <Route
+                exact
+                path="/user/filecomplaint"
+                Component={FileComplaint}
+              />
+              <Route
+                exact
+                path="/user/guestroombook"
+                Component={GuestRoomBook}
+              />
+              <Route exact path="/user/applyforleave" Component={ApplyLeave} />
+              <Route exact path="/user/mycomplaints" Component={MyComplaints} />
             </Routes>
           </div>
         </Router>

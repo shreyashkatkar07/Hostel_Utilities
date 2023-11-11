@@ -133,6 +133,7 @@ const GuestRoomBook = () => {
                       </option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
+                      <option value="transgender">Transgender</option>
                       <option value="pnts">Prefer not to say</option>
                     </select>
                   </div>
@@ -156,7 +157,7 @@ const GuestRoomBook = () => {
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
-                      No of persons:
+                      No. of Persons:
                     </label>
                     <input
                       type="text"
@@ -170,7 +171,7 @@ const GuestRoomBook = () => {
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
-                      Permenent Address:
+                      Permanent Address:
                     </label>
                     <textarea
                       name="permAdd"
@@ -227,30 +228,34 @@ const GuestRoomBook = () => {
                   <div className=" flex ">
                     <label
                       htmlFor="checkIn"
-                      className="w-[25%]"
+                      className="w-[25%] my-2"
                       style={{ minWidth: "114px" }}
                     >
                       Check in:
                     </label>
                     <input
-                      type="text"
-                      style={{ borderRadius: "10px", width: "70%" }}
-                      className="text-black p-1"
-                    />
+                          type="datetime-local"
+                          name="ldfrom"
+                          id="ldfrom"
+                          className="rounded-md p-2 w-[12rem] text-black mx-1"
+                          required
+                        />
                   </div>
                   <div className=" flex ">
                     <label
                       htmlFor="checkOut"
-                      className="w-[25%]"
+                      className="w-[25%] my-2"
                       style={{ minWidth: "114px" }}
                     >
                       Check out:
                     </label>
                     <input
-                      type="text"
-                      style={{ borderRadius: "10px", width: "70%" }}
-                      className="text-black p-1"
-                    />
+                          type="datetime-local"
+                          name="ldfrom"
+                          id="ldfrom"
+                          className="rounded-md p-2 w-[12rem] text-black mx-1"
+                          required
+                        />
                   </div>
                 </div>
                 <br />
