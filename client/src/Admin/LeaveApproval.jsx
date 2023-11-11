@@ -1,5 +1,5 @@
 import React from "react";
-import homeimg from "./../../assets/svg/Home-white.png";
+import homeimg from "./../assets/svg/Home-white.png";
 import { Link } from "react-router-dom";
 
 const LeaveApproval = () => {
