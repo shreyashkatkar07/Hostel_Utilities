@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const ApplyLeave = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
-      <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
+      <div
+        className={`md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1 `}
+      >
         <div className="px-16">
           <div className=" path p-2 flex items-center text-xl header">
             <img src={homeimg} alt="home" />

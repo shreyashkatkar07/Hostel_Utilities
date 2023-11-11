@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const GuestRoomBook = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         {/* <center> */}
-          <div
-            style={{
-              // width: "90%",
-              // textAlign: "left",
-              // fontSize: "x-large",
-              // color: "white",
-              padding:"0px 77px"
-            }}
-          >
-            <div className="path p-2 flex items-center text-xl header">
-              <img src={homeimg} alt="home" />
-              <p className="pl-4 text-3xl">
-                <Link to="/"> Home </Link>/ Guest Room Booking
-              </p>
-            </div>
+        <div
+          style={{
+            // width: "90%",
+            // textAlign: "left",
+            // fontSize: "x-large",
+            // color: "white",
+            padding: "0px 77px",
+          }}
+        >
+          <div className="path p-2 flex items-center text-xl header">
+            <img src={homeimg} alt="home" />
+            <p className="pl-4 text-3xl">
+              <Link to="/"> Home </Link>/ Guest Room Booking
+            </p>
           </div>
+        </div>
         {/* </center> */}
         <br />
         <div className="flex justify-center">
@@ -235,12 +242,12 @@ const GuestRoomBook = () => {
                       Check in:
                     </label>
                     <input
-                          type="datetime-local"
-                          name="ldfrom"
-                          id="ldfrom"
-                          className="rounded-md p-2 w-[12rem] text-black mx-1"
-                          required
-                        />
+                      type="datetime-local"
+                      name="ldfrom"
+                      id="ldfrom"
+                      className="rounded-md p-2 w-[12rem] text-black mx-1"
+                      required
+                    />
                   </div>
                   <div className=" flex ">
                     <label
@@ -251,12 +258,12 @@ const GuestRoomBook = () => {
                       Check out:
                     </label>
                     <input
-                          type="datetime-local"
-                          name="ldfrom"
-                          id="ldfrom"
-                          className="rounded-md p-2 w-[12rem] text-black mx-1"
-                          required
-                        />
+                      type="datetime-local"
+                      name="ldfrom"
+                      id="ldfrom"
+                      className="rounded-md p-2 w-[12rem] text-black mx-1"
+                      required
+                    />
                   </div>
                 </div>
                 <br />

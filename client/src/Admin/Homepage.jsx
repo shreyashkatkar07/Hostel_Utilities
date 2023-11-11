@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import comp from "./../../assets/svg/Subtract.svg";
-import leave from "./../../assets/svg/Subtract(1).svg";
-import guest from "./../../assets/svg/UsersFour(1).svg";
-import mcomp from "./../../assets/svg/Folder_file_alt_diuotone_fill(1).svg";
+import comp from "./../assets/svg/Subtract.svg";
+import leave from "./../assets/svg/Subtract(1).svg";
+import guest from "./../assets/svg/UsersFour(1).svg";
+import mcomp from "./../assets/svg/Folder_file_alt_diuotone_fill(1).svg";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -46,6 +46,7 @@ const Homepage = () => {
   const handleNoShadow4 = () => {
     setShadow4("");
   };
+
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
