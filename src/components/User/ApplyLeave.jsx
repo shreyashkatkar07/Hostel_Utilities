@@ -52,8 +52,8 @@ const ApplyLeave = () => {
                         name="name"
                         id="name"
                         style={{ borderRadius: "10px" }}
-                        className="rounded-md p-2 mx-1 text-black"
-                        placeholder="Enter your name here"
+                        className="rounded-md w-[19.5rem] p-2 mx-1 text-black"
+                        placeholder="Enter your name"
                         required
                       />
                     </div>
@@ -63,8 +63,8 @@ const ApplyLeave = () => {
                         type="text"
                         name="rollno"
                         id="rollno"
-                        className="rounded-md p-2 w-[11rem] mx-1 text-black"
-                        placeholder="e.g. 22BXX101"
+                        className="rounded-md p-2 w-[12rem] mx-1 text-black"
+                        placeholder="e.g. 22bcs001"
                         required
                       />
                     </div>
@@ -74,7 +74,7 @@ const ApplyLeave = () => {
                         type="text"
                         name="roomno"
                         id="roomno"
-                        className="rounded-md p-2 w-[8rem] mx-1 text-black"
+                        className="rounded-md p-2 w-[9rem] mx-1 text-black"
                         placeholder="e.g. X-101"
                         required
                       />
@@ -86,12 +86,13 @@ const ApplyLeave = () => {
                       <select
                         name="gender"
                         id="gender"
-                        className="rounded-md p-2 w-[12rem] text-black mx-1"
+                        className="rounded-md p-2 w-[15rem] text-black mx-1"
                         required
                       >
                         <option value="none">Prefer not to say</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="transgender">Transgender</option>
                       </select>
                     </div>
                     <div className="program my-5">
@@ -99,7 +100,7 @@ const ApplyLeave = () => {
                       <select
                         name="program"
                         id="program"
-                        className="rounded-md p-2 w-[12rem] text-black mx-1"
+                        className="rounded-md p-2 w-[15rem] text-black mx-1"
                         required
                       >
                         <option value="none">Select Discipline</option>
@@ -115,7 +116,7 @@ const ApplyLeave = () => {
                       <select
                         name="branch"
                         id="branch"
-                        className="rounded-md p-2 w-[11rem] text-black mx-1"
+                        className="rounded-md p-2 w-[13rem] text-black mx-1"
                         required
                       >
                         <option value="none">Select Branch</option>
@@ -187,7 +188,7 @@ const ApplyLeave = () => {
                         type="text"
                         name="contno"
                         id="contno"
-                        className="rounded-md p-2 w-[12rem] text-black mx-1 max-md:h-[3rem] max-md:mx-4 max-md:items-center"
+                        className="rounded-md p-2 w-[14rem] text-black mx-1 max-md:h-[3rem] max-md:mx-4 max-md:items-center"
                         placeholder="Enter mobile no."
                         required
                       />
@@ -199,7 +200,7 @@ const ApplyLeave = () => {
                         type="text"
                         name="contnopa"
                         id="contnopa"
-                        className="rounded-md p-2 w-[12rem] text-black mx-1"
+                        className="rounded-md p-2 w-[14rem] text-black mx-1"
                         placeholder="Enter mobile no."
                         required
                       />
