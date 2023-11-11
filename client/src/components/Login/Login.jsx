@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import bgImg from "./../../assets/images.jpg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [credentials, setCredentials] = useState({
+    user_id: "",
+    pass: "",
+    role: "", // Added role in the state
+  });
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post("http://localhost:5000/login", credentials)
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          navigate("/");
+          localStorage.setItem("token", res.data.authToken);
+          window.location.reload();
+        } else {
+          alert("error");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleRoleChange = (e) => {
+    setCredentials({ ...credentials, role: e.target.value });
   };
 
   return (
     <div
-      className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1 bg-no-repeat flex justify-center items-center"
+      className={`md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1 bg-no-repeat flex justify-center items-center ${
+        !localStorage.getItem("token") ? " md:w-[100vw] " : " "
+      }`}
       style={{
         backgroundImage: `url(${bgImg})`,
       }}
@@ -25,17 +54,16 @@ const Login = () => {
             <h1 className="mb-2 text-2xl">Login</h1>
             <span className="text-gray-300">Enter Login Details</span>
           </div>
-          <form
-          onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
             <div className="mb-4 text-lg">
               <input
                 className="rounded-3xl border-none bg-blue-700 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
                 id="email"
                 type="email"
                 name="email"
-                // onChange={onChange}
-                // value={credentials.email}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, user_id: e.target.value })
+                }
                 placeholder="id@email.com"
               />
             </div>
@@ -46,11 +74,28 @@ const Login = () => {
                 id="password"
                 type="Password"
                 name="password"
-                // onChange={onChange}
-                // value={credentials.password}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, pass: e.target.value })
+                }
                 placeholder="password"
               />
             </div>
+
+            <div className="mb-4 text-lg">
+              <select
+                className="rounded-3xl border-none bg-blue-700 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                onChange={handleRoleChange}
+                value={credentials.role}
+              >
+                <option value="" disabled>
+                  Select Role
+                </option>
+                <option value="caretaker">Caretaker</option>
+                <option value="student">Student</option>
+                <option value="worker">Worker</option>
+              </select>
+            </div>
+
             <div className="mt-8 flex justify-center text-lg text-black">
               <button
                 type="submit"

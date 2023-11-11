@@ -1,10 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect } from "react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import homeimg from "./../../assets/svg/Home-white.png";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FileComplaint = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
       <br />
@@ -106,9 +113,9 @@ const FileComplaint = () => {
               <br />
               <form action="/action_page.php">
                 <label>Complaint photo/video :</label>&nbsp;&nbsp;
-                <input type="file" id="myFile" name="filename" required/>
+                <input type="file" id="myFile" name="filename" required />
                 {/* <br/> 
-                <input type="submit" value='Submit' style={{backgroundColor:'#3b82f6'}}/> */}
+              <input type="submit" value='Submit' style={{backgroundColor:'#3b82f6'}}/> */}
               </form>
               <br />
               <center>

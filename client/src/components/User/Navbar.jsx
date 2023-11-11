@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import userf from "./../../assets/svg/User_fill(1).svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,13 @@ const Navbar = (props) => {
     setIsOpen(!isOpen);
   };
   // console.log(isOpen);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -58,16 +65,25 @@ const Navbar = (props) => {
         </div>
         <div className="md:flex hidden items-center space-x-4">
           <img src={userf} alt="userf" />
-          <Link
-            to="/login"
-            className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
-            style={{
-              fontFamily: "'EB Garamond', serif",
-            }}
-          >
-            Login
-          </Link>
-          <Link
+          {!localStorage.getItem("token") ? (
+            <Link
+              to="/login"
+              className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
+              style={{
+                fontFamily: "'EB Garamond', serif",
+              }}
+            >
+              Login
+            </Link>
+          ) : (
+            <button
+              className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
+          {/* <Link
             to="/signup"
             className="text-white text-2xl rounded-2xl px-3 py-[2px] bg-blue-900 hover:bg-blue-700 transition-all duration-300"
             style={{
@@ -75,7 +91,7 @@ const Navbar = (props) => {
             }}
           >
             Signup
-          </Link>
+          </Link> */}
         </div>
       </nav>
     </>

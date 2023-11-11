@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import homeimg from "./../../assets/svg/Home-black.png";
-import comp from "./../../assets/svg/File_dock_add_fill.svg";
-import leaveico from "./../../assets/svg/File_dock_fill.svg";
-import guest from "./../../assets/svg/UsersFour.svg";
-import mcomp from "./../../assets/svg/Folder_file_alt_diuotone_fill.svg";
+import homeimg from "./../assets/svg/Home-black.png";
+import comp from "./../assets/svg/File_dock_add_fill.svg";
+import leaveico from "./../assets/svg/File_dock_fill.svg";
+import guest from "./../assets/svg/UsersFour.svg";
+import mcomp from "./../assets/svg/Folder_file_alt_diuotone_fill.svg";
 
 const SideNav = (props) => {
   // console.log(props.isOpen)
