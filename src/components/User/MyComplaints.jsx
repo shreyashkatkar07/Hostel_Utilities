@@ -6,14 +6,12 @@ const MyComplaints = () => {
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
-        {/* <center> */}
-          <div style={{padding:"0px 99px"}}>
-            <div className="path p-2 flex items-center text-xl header">
-              <img src={homeimg} alt="home" />
-              <p className="pl-4 text-3xl"><Link to="/"> Home </Link> / My Complaints</p>
-            </div>
-          </div>
-        {/* </center> */}
+        <div className="mx-24">
+        <div className="path p-2 flex items-center text-xl header">
+          <img src={homeimg} alt="home" />
+          <p className="pl-4 text-3xl"><Link to="/"> Home </Link> / My Complaints</p>
+        </div>
+        </div>
         {/* To be done through map */}
         <div className="complaints lg:p-6 p-2 text-black lg:text-2xl flex items-center flex-col">
           <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
