@@ -6,7 +6,7 @@ const MyComplaints = () => {
   return (
     <>
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
-        <div className="mx-24">
+        <div style={{padding:"0px 99px"}}>
         <div className="path p-2 flex items-center text-xl header">
           <img src={homeimg} alt="home" />
           <p className="pl-4 text-3xl"><Link to="/"> Home </Link> / My Complaints</p>
