@@ -15,7 +15,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   paassword: "",
-  database: "test",
+  database: "Hostel_Utilities",
 });
 
 app.listen(host, () => {
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.post("/login", (req, res) => {
-  const sql = "SELECT * FROM login WHERE user_id = ? AND pass = ?";
+  const sql = "SELECT * FROM login WHERE username = ? AND password = ?";
   db.query(sql, [req.body.email, req.body.password], (err, data) => {
     if (err) {
       console.error("Error in login query:", err);
@@ -46,7 +46,7 @@ app.post("/login", (req, res) => {
 
 app.post("/user/newcomplaint", (req, res) => {
   const sql =
-    "INSERT INTO Complaint (`type`, `description`, `image`, `room_no`) VALUES (?)";
+    "INSERT INTO complaint (`type`, `description`, `photo`, `room_no`) VALUES (?)";
   const values = [
     req.body.type,
     req.body.description,
@@ -68,13 +68,71 @@ app.post("/user/newcomplaint", (req, res) => {
 });
 
 app.get("/user/mycomplaints", (req, res) => {
-  const sql = "SELECT * FROM Complaint";
+  const sql = "SELECT * FROM complaint";
   try {
     db.query(sql, (err, data) => {
       if (err) {
         return res.json(err);
       } else {
         return res.json(data);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/user/guestroombook", (req, res) => {
+  const sql =
+    "INSERT INTO room ( `Hostel`, `Name`, `Gender`, `Relationship`, `NumberOfPersons`, `PermanentAddress`, `ContactAddress`, `PhoneNo`, `EmailId`, `CheckIn`, `CheckOut`) VALUES (?)";
+  const values = [
+    req.body.Hostel,
+    req.body.Name,
+    req.body.Gender,
+    req.body.Relationship,
+    req.body.NumberOfPersons,
+    req.body.PermanentAddress,
+    req.body.ContactAddress,
+    req.body.PhoneNo,
+    req.body.EmailId,
+    req.body.CheckIn,
+    req.body.CheckOut,
+  ];
+  try {
+    db.query(sql, [values], (err, data) => {
+      if (err) return res.json(err);
+      else {
+        res.json("Application successfully submitted");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/user/leaveapplication", (req, res) => {
+  const sql =
+    "INSERT INTO Leave ( `Name`, `Roll_No`, `Room_No`, `Gender`, `Program`, `Branch`, `Reason_for_leave`, `Leave_Duration`, `From_`, `Upto_`, `Residential_Address`, `Contact_No`, `Contact_No_of_Parents`  ) VALUES (?)";
+  const values = [
+    req.body.Name,
+    req.body.Roll_No,
+    req.body.Room_No,
+    req.body.Gender,
+    req.body.Program,
+    req.body.Branch,
+    req.body.Reason_for_leave,
+    req.body.Leave_Duration,
+    req.body.From_,
+    req.body.Upto_,
+    req.body.Residential_Address,
+    req.body.Contact_No,
+    req.body.Contact_No_of_Parents,
+  ];
+  try {
+    db.query(sql, [values], (err, data) => {
+      if (err) return res.json(err);
+      else {
+        res.json("Application successfully submitted");
       }
     });
   } catch (error) {

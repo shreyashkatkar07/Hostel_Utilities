@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,35 @@ const GuestRoomBook = () => {
       navigate("/login");
     }
   }, []);
+
+  const [newRoom, setNewRoom] = useState({
+    Hostel: "",
+    Name: "",
+    Gender: "",
+    Relationship: "",
+    NumberOfPersons: "",
+    PermanentAddress: "",
+    ContactAddress: "",
+    PhoneNo: "",
+    EmailId: "",
+    CheckIn: "",
+    CheckOut: "",
+  });
+
+  const handleChange = (e) => {
+    setNewRoom((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/user/guestroombook", newRoom);
+      console.log(newRoom);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -52,7 +81,11 @@ const GuestRoomBook = () => {
                 borderBottomRightRadius: "10px",
               }}
             >
-              <div className="px-6 py-4" style={{ fontSize: "x-large" }}>
+              <form
+                onSubmit={handleSubmit}
+                className="px-6 py-4"
+                style={{ fontSize: "x-large" }}
+              >
                 <div>
                   <label htmlFor="hostel">Hostel:</label>
                   <select
@@ -66,6 +99,7 @@ const GuestRoomBook = () => {
                       borderRadius: "10px",
                       color: "black",
                     }}
+                    onChange={handleChange}
                   >
                     <option value="" disabled selected hidden>
                       Choose your hostel
@@ -83,40 +117,14 @@ const GuestRoomBook = () => {
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
-                      First Name:{" "}
+                      Name:{" "}
                     </label>
                     <input
                       type="text"
+                      name="Name"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
-                    />
-                  </div>
-                  <div className=" flex ">
-                    <label
-                      htmlFor="middleName"
-                      className="w-[25%]"
-                      style={{ minWidth: "114px" }}
-                    >
-                      Middle Name:{" "}
-                    </label>
-                    <input
-                      type="text"
-                      style={{ borderRadius: "10px", width: "70%" }}
-                      className="text-black p-1"
-                    />
-                  </div>
-                  <div className=" flex ">
-                    <label
-                      htmlFor="lastName"
-                      className="w-[25%]"
-                      style={{ minWidth: "114px" }}
-                    >
-                      Last Name:{" "}
-                    </label>
-                    <input
-                      type="text"
-                      style={{ borderRadius: "10px", width: "70%" }}
-                      className="text-black p-1"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
@@ -128,13 +136,14 @@ const GuestRoomBook = () => {
                       Gender:
                     </label>
                     <select
-                      name="gender"
+                      name="Gender"
                       id="gender"
                       style={{
                         borderRadius: "10px",
                         color: "black",
                         width: "70%",
                       }}
+                      onChange={handleChange}
                     >
                       <option value="" disabled selected hidden>
                         Select your gender
@@ -157,6 +166,7 @@ const GuestRoomBook = () => {
                       type="text"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
@@ -171,6 +181,7 @@ const GuestRoomBook = () => {
                       type="text"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="flex ">
@@ -187,6 +198,7 @@ const GuestRoomBook = () => {
                       rows="4"
                       className="w-[70%] text-black"
                       style={{ borderRadius: "10px" }}
+                      onChange={handleChange}
                     ></textarea>
                   </div>
                   <div className="flex ">
@@ -203,6 +215,7 @@ const GuestRoomBook = () => {
                       rows="4"
                       className="w-[70%] text-black"
                       style={{ borderRadius: "10px" }}
+                      onChange={handleChange}
                     ></textarea>
                   </div>
                   <div className=" flex ">
@@ -217,6 +230,7 @@ const GuestRoomBook = () => {
                       type="text"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
@@ -231,6 +245,7 @@ const GuestRoomBook = () => {
                       type="text"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
+                      onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
@@ -246,7 +261,7 @@ const GuestRoomBook = () => {
                       name="ldfrom"
                       id="ldfrom"
                       className="rounded-md p-2 w-[12rem] text-black mx-1"
-                      required
+                      onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
@@ -262,7 +277,7 @@ const GuestRoomBook = () => {
                       name="ldfrom"
                       id="ldfrom"
                       className="rounded-md p-2 w-[12rem] text-black mx-1"
-                      required
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -281,7 +296,7 @@ const GuestRoomBook = () => {
                     Submit
                   </button>
                 </center>
-              </div>
+              </form>
             </div>
           </div>
         </div>
