@@ -45,27 +45,40 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/user/newcomplaint", (req, res) => {
-  const sql =
-    "INSERT INTO complaint (`type`, `description`, `photo`, `room_no`) VALUES (?)";
-  const values = [
+  const complaintSql =
+    "INSERT INTO complaint (`type`, `description`, `photo`, `c_time`, `staff_flag`, `stud_flag`) VALUES (?, ?, ?, CURRENT_DATE, 0, 0)";
+  const filedBySql = "INSERT INTO filed_by (`roll_no`) VALUES (?)";
+
+  const complaintValues = [
     req.body.type,
     req.body.description,
     req.body.image,
-    req.body.room_no,
+  ];
+
+  const filedByValues = [
+    req.body.roll_no, // Assuming roll_no is part of req.body
   ];
 
   try {
-    db.query(sql, [values], (err, data) => {
-      if (err) {
-        return res.json(err);
+    db.query(complaintSql, complaintValues, (complaintErr, complaintData) => {
+      if (complaintErr) {
+        return res.json(complaintErr);
       } else {
-        res.json("New complaint registered");
+        // If the first query is successful, execute the second query
+        db.query(filedBySql, filedByValues, (filedByErr, filedByData) => {
+          if (filedByErr) {
+            return res.json(filedByErr);
+          } else {
+            res.json("New complaint registered");
+          }
+        });
       }
     });
   } catch (error) {
     console.log(error);
   }
 });
+
 
 app.get("/user/mycomplaints", (req, res) => {
   const sql = "SELECT * FROM complaint";
