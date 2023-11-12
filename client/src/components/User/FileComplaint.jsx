@@ -17,7 +17,7 @@ const FileComplaint = () => {
     type: "",
     description: "",
     image: "",
-    room_no: "",
+    roll_no: "",
   });
 
   const handleChange = (e) => {
@@ -102,11 +102,11 @@ const FileComplaint = () => {
                   </select>
                 </div>
                 <div className="w-[50%]">
-                  <label htmlFor="room_no">Roll No. :</label>
+                  <label htmlFor="roll_no">Roll No. :</label>
                   <input
                     type="text"
-                    name="room_no"
-                    id="room_no"
+                    name="roll_no"
+                    id="roll_no"
                     placeholder="ex:  A-403"
                     style={{
                       marginLeft: "0.5vw",
