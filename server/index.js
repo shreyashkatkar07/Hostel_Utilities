@@ -76,7 +76,8 @@ app.post("/user/newcomplaint", (req, res) => {
 });
 
 app.get("/user/mycomplaints", (req, res) => {
-  const sql = "SELECT * FROM complaint";
+  const rollNo = req.body.roll_no;
+  const sql = `SELECT * FROM complaint`;
   try {
     db.query(sql, (err, data) => {
       if (err) {
