@@ -13,14 +13,16 @@ import { useNavigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
 import Admin from "./Admin/Homepage";
+import LeaveApproval from "./Admin/LeaveApproval";
+import GuestRoomRecords from "./Admin/GuestRoomRecords";
+import ComplaintRecords from "./Admin/ComplaintRecords";
+import StudentRecords from "./Admin/StudentRecords";
 
 const USER_TYPES = {
   PUBLIC_USER: "public",
   NORMAL_USER: "student",
   ADMIN_USER: "Admin",
 };
-
-const CURRENT_USER_TYPE = USER_TYPES.NORMAL_USER;
 
 function App() {
   const [isOp, setIsOp] = useState(true);
@@ -29,6 +31,30 @@ function App() {
     setIsOp(isOpen);
   };
   console.log(isOp);
+
+  const [currentUserType, setCurrentUserType] = useState("public");
+
+  const handleRoleChange = (role) => {
+    setCurrentUserType(role);
+  };
+
+  console.log(currentUserType);
+
+  const UserElement = ({ children }) => {
+    if (currentUserType === "student") {
+      return <>{children}</>;
+    } else {
+      <div>error</div>;
+    }
+  };
+
+  const AdminElement = ({ children }) => {
+    if (currentUserType === "admin") {
+      return <>{children}</>;
+    } else {
+      <div>error</div>;
+    }
+  };
 
   return (
     <>
@@ -42,7 +68,7 @@ function App() {
               minHeight: "calc(100vh-80px)",
             }}
           >
-            {CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER ? (
+            {currentUserType === USER_TYPES.NORMAL_USER ? (
               <SideNavUser isOpen={!isOp} setIsOp={setIsOp} />
             ) : (
               <SideNavAdmin isOpen={!isOp} setIsOp={setIsOp} />
@@ -68,12 +94,21 @@ function App() {
                   </AdminElement>
                 }
               />
-              <Route exact path="/login" Component={Login} />
+              <Route
+                exact
+                path="/login"
+                element={<Login handleRoleChange={handleRoleChange} />}
+              />
               <Route exact path="/signup" Component={Signup} />
               <Route exact path="/filecomplaint" Component={FileComplaint} />
               <Route exact path="/guestroombook" Component={GuestRoomBook} />
               <Route exact path="/applyforleave" Component={ApplyLeave} />
               <Route exact path="/mycomplaints" Component={MyComplaints} />
+              <Route exact path="/LeaveApproval" Component={LeaveApproval} />
+              <Route exact path="/GuestRoomRecords" Component={GuestRoomRecords} />
+              <Route exact path="/ComplaintRecords" Component={ComplaintRecords} />
+              <Route exact path="/StudentRecords" Component={StudentRecords} />
+              <Route exact path="/admin" Component={Admin} />
               <Route exact path="*" Component={<div>Page not found</div>} />
             </Routes>
           </div>
@@ -82,21 +117,5 @@ function App() {
     </>
   );
 }
-
-const UserElement = ({ children }) => {
-  if (CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
-    return <>{children}</>;
-  } else {
-    <div>error</div>;
-  }
-};
-
-const AdminElement = ({ children }) => {
-  if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
-    return <>{children}</>;
-  } else {
-    <div>error</div>;
-  }
-};
 
 export default App;

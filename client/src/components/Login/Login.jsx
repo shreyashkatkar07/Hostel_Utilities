@@ -3,7 +3,7 @@ import bgImg from "./../../assets/images.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({
     user_id: "",
     pass: "",
@@ -17,9 +17,15 @@ const Login = () => {
       .post("http://localhost:5000/login", credentials)
       .then((res) => {
         if (res.data.Status === "Success") {
-          navigate("/");
+          props.handleRoleChange(credentials.role);
+          if (credentials.role === "student") {
+            navigate("/");
+          } else {
+            navigate("/admin");
+          }
           localStorage.setItem("token", res.data.authToken);
-          window.location.reload();
+          // window.location.reload();
+          console.log("Role after login:", credentials.role); // Log the role
         } else {
           alert("error");
         }
@@ -35,8 +41,8 @@ const Login = () => {
 
   return (
     <div
-      className={`md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1 bg-no-repeat flex justify-center items-center ${
-        !localStorage.getItem("token") ? " md:w-[100vw] " : " "
+      className={`w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1 bg-no-repeat flex justify-center items-center ${
+        !localStorage.getItem("token") ? " md:w-[100vw] " : " md:w-[85vw] "
       }`}
       style={{
         backgroundImage: `url(${bgImg})`,
@@ -90,7 +96,7 @@ const Login = () => {
                 <option value="" disabled>
                   Select Role
                 </option>
-                <option value="caretaker">Caretaker</option>
+                <option value="admin">Caretaker</option>
                 <option value="student">Student</option>
                 <option value="worker">Worker</option>
               </select>

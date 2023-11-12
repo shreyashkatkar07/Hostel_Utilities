@@ -51,7 +51,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/Homepage"
+                to="/admin"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -66,7 +66,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/LeaveApproval"
+                to="/LeaveApproval"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -83,7 +83,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/GuestRoomRecords"
+                to="/GuestRoomRecords"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -100,7 +100,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/ComplaintRecords"
+                to="/ComplaintRecords"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}
@@ -117,7 +117,7 @@ const SideNav = (props) => {
             </li>
             <li className="opcion-con-desplegable">
               <Link
-                to="/Admin/StudentRecords"
+                to="/StudentRecords"
                 onClick={() => {
                   props.setIsOp(props.isOpen);
                 }}

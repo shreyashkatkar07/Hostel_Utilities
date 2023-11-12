@@ -52,7 +52,7 @@ const Homepage = () => {
       <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
         <div className="flex flex-wrap flex-row w-[100%] justify-center lg:justify-normal">
           <div className="h-[420px] p-10">
-            <Link to="/Admin/LeaveApproval">
+            <Link to="/LeaveApproval">
               <div
                 className="max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col transition-all duration-300"
                 onMouseEnter={handleShadow1}

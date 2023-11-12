@@ -15,6 +15,7 @@ To solve this issue we decided to make a website which keeps track of all the ac
  • Guest room allotment \
  • Student leave application
 
+ 
  # Tech Stack 💻
  ## Frontend
 • Vite + ReactJs\

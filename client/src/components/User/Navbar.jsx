@@ -30,7 +30,7 @@ const Navbar = (props) => {
               fontFamily: "'Lobster', cursive",
             }}
           >
-            HostelUtilities
+            <Link to="/">HostelUtilities</Link>
           </h1>
         </div>
         <div className="block md:hidden">
