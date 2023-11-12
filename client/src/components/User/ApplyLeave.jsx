@@ -12,6 +12,37 @@ const ApplyLeave = () => {
     }
   }, []);
 
+  const [newLeave, setNewLeave] = useState({
+    Name: "",
+    Roll_No: "",
+    Room_No: "",
+    Gender: "",
+    Program: "",
+    Branch: "",
+    Reason_for_leave: "",
+    Leave_Duration: "",
+    From_: "",
+    Upto_: "",
+    Residential_Address: "",
+    Contact_No: "",
+    Contact_No_of_Parents: "",
+  });
+
+  const handleChange = (e) => {
+    setNewLeave((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/user/leaveapplication", newLeave);
+      console.log(newLeave);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div
