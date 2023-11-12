@@ -32,11 +32,19 @@ function App() {
   };
   console.log(isOp);
 
-  const [currentUserType, setCurrentUserType] = useState("public");
+  // let navigate = useNavigate();
+  // useEffect(() => {
+  //   if (!localStorage.getItem("token")) {
+  //     navigate("/login");
+  //   }
+  // }, []);
+
+  const [currentUserType, setCurrentUserType] = useState("");
 
   const handleRoleChange = (role) => {
     setCurrentUserType(role);
   };
+  // console.log(currentUserType);
 
   console.log(currentUserType);
 
@@ -68,10 +76,12 @@ function App() {
               minHeight: "calc(100vh-80px)",
             }}
           >
-            {currentUserType === USER_TYPES.NORMAL_USER ? (
+            {currentUserType === "student" ? (
               <SideNavUser isOpen={!isOp} setIsOp={setIsOp} />
-            ) : (
+            ) : currentUserType === "admin" ? (
               <SideNavAdmin isOpen={!isOp} setIsOp={setIsOp} />
+            ) : (
+              <SideNavUser isOpen={!isOp} setIsOp={setIsOp} />
             )}
 
             <Routes>
@@ -105,8 +115,16 @@ function App() {
               <Route exact path="/applyforleave" Component={ApplyLeave} />
               <Route exact path="/mycomplaints" Component={MyComplaints} />
               <Route exact path="/LeaveApproval" Component={LeaveApproval} />
-              <Route exact path="/GuestRoomRecords" Component={GuestRoomRecords} />
-              <Route exact path="/ComplaintRecords" Component={ComplaintRecords} />
+              <Route
+                exact
+                path="/GuestRoomRecords"
+                Component={GuestRoomRecords}
+              />
+              <Route
+                exact
+                path="/ComplaintRecords"
+                Component={ComplaintRecords}
+              />
               <Route exact path="/StudentRecords" Component={StudentRecords} />
               <Route exact path="/admin" Component={Admin} />
               <Route exact path="*" Component={<div>Page not found</div>} />

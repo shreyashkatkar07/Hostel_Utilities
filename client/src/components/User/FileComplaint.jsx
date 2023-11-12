@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const FileComplaint = () => {
   let navigate = useNavigate();
@@ -11,6 +12,28 @@ const FileComplaint = () => {
       navigate("/login");
     }
   }, []);
+
+  const [complaint, setComplaint] = useState({
+    type: "",
+    description: "",
+    image: "",
+    room_no: "",
+  });
+
+  const handleChange = (e) => {
+    setComplaint((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/user/newcomplaint", complaint);
+      console.log(complaint);
+      navigate("/mycomplaints");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="md:w-[85vw] w-[100%] sticky left-[20vw] bg-gray-800 text-white lg:p-8 p-1">
@@ -48,14 +71,18 @@ const FileComplaint = () => {
               borderBottomRightRadius: "10px",
             }}
           >
-            <div className="px-6 py-4" style={{ fontSize: "x-large" }}>
+            <form
+              onSubmit={handleSubmit}
+              className="px-6 py-4"
+              style={{ fontSize: "x-large" }}
+            >
               <div>Complaint No. : XYZ123</div>
               <br />
               <div className="flex">
                 <div className="w-[50%]">
                   <label htmlFor="category">Category:</label>
                   <select
-                    name="category"
+                    name="type"
                     id="category"
                     style={{
                       textAlign: "center",
@@ -65,6 +92,7 @@ const FileComplaint = () => {
                       borderRadius: "10px",
                       color: "black",
                     }}
+                    onChange={handleChange}
                     required
                   >
                     <option value="none">Select category</option>
@@ -74,11 +102,11 @@ const FileComplaint = () => {
                   </select>
                 </div>
                 <div className="w-[50%]">
-                  <label htmlFor="roomno">Room No. :</label>
+                  <label htmlFor="room_no">Room No. :</label>
                   <input
                     type="text"
-                    name="roomno"
-                    id="roomno"
+                    name="room_no"
+                    id="room_no"
                     placeholder="ex:  A-403"
                     style={{
                       marginLeft: "0.5vw",
@@ -88,6 +116,7 @@ const FileComplaint = () => {
                       borderRadius: "10px",
                       color: "black",
                     }}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -103,6 +132,7 @@ const FileComplaint = () => {
                     color: "black",
                     padding: "10px",
                   }}
+                  onChange={handleChange}
                   name="description"
                   id="description"
                   cols="42"
@@ -111,12 +141,27 @@ const FileComplaint = () => {
                 ></textarea>
               </div>
               <br />
-              <form action="/action_page.php">
+              <div>
                 <label>Complaint photo/video :</label>&nbsp;&nbsp;
-                <input type="file" id="myFile" name="filename" required />
+                <input
+                  type="text"
+                  name="image"
+                  id="image"
+                  placeholder="ex:  A-403"
+                  style={{
+                    marginLeft: "0.5vw",
+                    width: "25%",
+                    minWidth: "122px",
+                    textAlign: "center",
+                    borderRadius: "10px",
+                    color: "black",
+                  }}
+                  onChange={handleChange}
+                  required
+                />
                 {/* <br/> 
               <input type="submit" value='Submit' style={{backgroundColor:'#3b82f6'}}/> */}
-              </form>
+              </div>
               <br />
               <center>
                 <button
@@ -133,7 +178,7 @@ const FileComplaint = () => {
                   Submit
                 </button>
               </center>
-            </div>
+            </form>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ const db = mysql.createConnection({
   database: "test",
 });
 
-app.listen(5000, () => {
+app.listen(host, () => {
   console.log(`Server is listening on http://localhost:${host}`);
 });
 
@@ -42,6 +42,44 @@ app.post("/login", (req, res) => {
     const authToken = Math.random() * 100;
     return res.json({ Status: "Success", authToken });
   });
+});
+
+app.post("/user/newcomplaint", (req, res) => {
+  const sql =
+    "INSERT INTO Complaint (`type`, `description`, `image`, `room_no`) VALUES (?)";
+  const values = [
+    req.body.type,
+    req.body.description,
+    req.body.image,
+    req.body.room_no,
+  ];
+
+  try {
+    db.query(sql, [values], (err, data) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        res.json("New complaint registered");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/user/mycomplaints", (req, res) => {
+  const sql = "SELECT * FROM Complaint";
+  try {
+    db.query(sql, (err, data) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        return res.json(data);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get("/", (req, res) => {
