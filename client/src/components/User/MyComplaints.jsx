@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MyComplaints = () => {
   let navigate = useNavigate();
@@ -8,6 +9,21 @@ const MyComplaints = () => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
+  }, []);
+
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    const fetchAllComplaints = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/user/mycomplaints");
+        console.log(res.data);
+        setComplaints(res.data);
+      } catch (error) {
+        console.error("Error fetching complaints:", error);
+      }
+    };
+    fetchAllComplaints();
   }, []);
 
   return (
@@ -23,7 +39,7 @@ const MyComplaints = () => {
         </div>
         {/* To be done through map */}
         <div className="complaints lg:p-6 p-2 text-black lg:text-2xl flex items-center flex-col">
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
+          {/* <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
             <div className="md:w-[60%] w-[100%] flex items-center ">
               <div className="flex items-center justify-center flex-col lg:px-10 px-6">
                 <p className="">Complaint id</p>
@@ -42,127 +58,36 @@ const MyComplaints = () => {
                 <span>Check Off</span>
               </div>
             </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
+          </div> */}
+
+          {complaints.map((complaint) => (
+            <div
+              key={complaint.c_id}
+              className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col"
+            >
+              <div className="md:w-[60%] w-[100%] flex items-center ">
+                <div className="flex items-center justify-center flex-col lg:px-10 px-6">
+                  <p className="">Complaint ID:{complaint.c_id}</p>
+                  <p className="">Complaint Type:{complaint.type}</p>
+                </div>
+                <div className="flex items-center justify-center flex-col lg:px-10 px-6">
+                  <p className="">DD/MM/YYYY</p>
+                  <p className="">--:--:--</p>
+                </div>
+                <div className="flex items-center justify-center flex-col lg:px-10 px-6">
+                  <p className="">{complaint.description}</p>
+                </div>
               </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
-              </div>
-            </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
-              </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
+              <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
+                <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
+                  <span>Delete</span>
+                </div>
+                <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
+                  <span>Check Off</span>
+                </div>
               </div>
             </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
-              </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
-              </div>
-            </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
-              </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
-              </div>
-            </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
-              </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
-              </div>
-            </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
-          <div className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col">
-            <div className="md:w-[60%] w-[100%] flex items-center ">
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">Complaint id</p>
-                <p className="">Type</p>
-              </div>
-              <div className="flex items-center justify-center flex-col lg:px-10 px-6">
-                <p className="">DD/MM/YYYY</p>
-                <p className="">--:--:--</p>
-              </div>
-            </div>
-            <div className="w-[40%] flex justify-center items-center lg:flex-row flex-row md:flex-col">
-              <div className="del flex justify-center items-center bg-red-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Delete</span>
-              </div>
-              <div className="chkof flex justify-center items-center bg-blue-600 text-white rounded-3xl px-8 py-1 my-1 mx-6">
-                <span>Check Off</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
