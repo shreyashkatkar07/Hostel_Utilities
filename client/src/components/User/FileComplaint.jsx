@@ -102,7 +102,7 @@ const FileComplaint = () => {
                   </select>
                 </div>
                 <div className="w-[50%]">
-                  <label htmlFor="room_no">Room No. :</label>
+                  <label htmlFor="room_no">Roll No. :</label>
                   <input
                     type="text"
                     name="room_no"
