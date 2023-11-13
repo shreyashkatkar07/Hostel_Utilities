@@ -118,6 +118,24 @@ app.get("/admin/checkoffcomplaint/:id", (req, res) => {
     }
   });
 });
+app.get("/admin/rejectleave/:id", (req, res) => {
+  const leaveId = req.params.id;
+  const sql =
+    "UPDATE grant_leave SET permission = '-1' WHERE grant_leave.leave_id= ? ";
+  db.query(sql, leaveId, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Rejected leave");
+  });
+});
+app.get("/admin/grantleave/:id", (req, res) => {
+  const leaveId = req.params.id;
+  const sql = "UPDATE grant_leave SET permission = '1' WHERE grant_leave.leave_id= ? ";
+  db.query(sql, leaveId, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Granted permission successfully");
+  });
+});
+
 
 app.get("/user/mycomplaints", (req, res) => {
   const sql = "SELECT * FROM complaint";
@@ -188,8 +206,33 @@ app.get("/admin/grantleave", (req, res) => {
   });
 });
 
+app.get("/admin/getcomplaints", (req, res) => {
+  const sql = "SELECT * FROM guest_room";
+  db.query(sql, (err, data) => {
+    try {
+      if (err) return res.json(err);
+      return res.json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
+
 app.get("/admin/getstudents", (req, res) => {
   const sql = "SELECT * FROM student";
+  db.query(sql, (err, data) => {
+    try {
+      if (err) return res.json(err);
+      return res.json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
+
+app.get("/admin/getrooms", (req, res) => {
+  const sql =
+    "SELECT g.roll_no, g.name, g.room_no, s.par_phone FROM guardian g INNER JOIN student s ON g.roll_no = s.roll_no WHERE g.room_no IN (SELECT r.room_no FROM guest_room r WHERE status = 0)";
   db.query(sql, (err, data) => {
     try {
       if (err) return res.json(err);
