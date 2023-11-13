@@ -24,7 +24,7 @@ app.listen(host, () => {
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE",);
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -89,23 +89,23 @@ app.delete("/user/delcomplaint/:id", (req, res) => {
   });
 });
 
-app.get("/user/checkoffcomplaint/:id", (req, res)=>{
+app.get("/user/checkoffcomplaint/:id", (req, res) => {
   const compId = req.params.id;
   const sql = "UPDATE complaint SET stud_flag = '1' WHERE complaint.c_id = ? ";
   db.query(sql, compId, (err, data) => {
     if (err) return res.json(err);
     return res.json("Checked off successfully");
   });
-})
+});
 
-app.get("/admin/checkoffcomplaint/:id", (req, res)=>{
+app.get("/admin/checkoffcomplaint/:id", (req, res) => {
   const compId = req.params.id;
   const sql = "UPDATE complaint SET staff_flag = '1' WHERE complaint.c_id = ? ";
   db.query(sql, compId, (err, data) => {
     if (err) return res.json(err);
     return res.json("Checked off successfully");
   });
-})
+});
 
 app.get("/user/mycomplaints", (req, res) => {
   const sql = "SELECT * FROM complaint";
@@ -174,6 +174,18 @@ app.post("/user/leaveapplication", (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+app.get("/admin/getstudents", (req, res) => {
+  const sql = "SELECT * FROM student";
+  db.query(sql, (err, data) => {
+    try {
+      if (err) return res.json(err);
+      return res.json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 });
 
 app.get("/", (req, res) => {
