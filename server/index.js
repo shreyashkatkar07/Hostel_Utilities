@@ -24,7 +24,7 @@ app.listen(host, () => {
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -33,15 +33,20 @@ app.use(function (req, res, next) {
 });
 
 app.post("/login", (req, res) => {
-  const sql = "SELECT * FROM login WHERE username = ? AND password = ?";
-  db.query(sql, [req.body.email, req.body.password], (err, data) => {
-    if (err) {
-      console.error("Error in login query:", err);
-      return res.status(500).json({ error: "Internal server error" });
+  const sql =
+    "SELECT * FROM login WHERE username = ? AND password = ? AND role = ?";
+  db.query(
+    sql,
+    [req.body.email, req.body.password, req.body.role],
+    (err, data) => {
+      if (err) {
+        console.error("Error in login query:", err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+      const authToken = req.body.role;
+      return res.json({ Status: "Success", authToken });
     }
-    const authToken = Math.random() * 100;
-    return res.json({ Status: "Success", authToken });
-  });
+  );
 });
 
 app.post("/user/newcomplaint", (req, res) => {
@@ -49,11 +54,7 @@ app.post("/user/newcomplaint", (req, res) => {
     "INSERT INTO complaint (`type`, `description`, `photo`, `c_time`, `staff_flag`, `stud_flag`) VALUES (?, ?, ?, CURRENT_DATE, 0, 0)";
   const filedBySql = "INSERT INTO filed_by (`roll_no`) VALUES (?)";
 
-  const complaintValues = [
-    req.body.type,
-    req.body.description,
-    req.body.image,
-  ];
+  const complaintValues = [req.body.type, req.body.description, req.body.image];
 
   const filedByValues = [
     req.body.roll_no, // Assuming roll_no is part of req.body
@@ -79,6 +80,32 @@ app.post("/user/newcomplaint", (req, res) => {
   }
 });
 
+app.delete("/user/delcomplaint/:id", (req, res) => {
+  const compId = req.params.id;
+  const sql = "DELETE FROM complaint WHERE c_id = ?";
+  db.query(sql, compId, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Book deleted successfully");
+  });
+});
+
+app.get("/user/checkoffcomplaint/:id", (req, res) => {
+  const compId = req.params.id;
+  const sql = "UPDATE complaint SET stud_flag = '1' WHERE complaint.c_id = ? ";
+  db.query(sql, compId, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Checked off successfully");
+  });
+});
+
+app.get("/admin/checkoffcomplaint/:id", (req, res) => {
+  const compId = req.params.id;
+  const sql = "UPDATE complaint SET staff_flag = '1' WHERE complaint.c_id = ? ";
+  db.query(sql, compId, (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Checked off successfully");
+  });
+});
 
 app.get("/user/mycomplaints", (req, res) => {
   const sql = "SELECT * FROM complaint";
@@ -123,34 +150,42 @@ app.get("/user/guestroombook", (req, res) => {
   }
 });
 
-app.get("/user/leaveapplication", (req, res) => {
+app.post("/user/leaveapplication", (req, res) => {
   const sql =
-    "INSERT INTO Leave ( `Name`, `Roll_No`, `Room_No`, `Gender`, `Program`, `Branch`, `Reason_for_leave`, `Leave_Duration`, `From_`, `Upto_`, `Residential_Address`, `Contact_No`, `Contact_No_of_Parents`  ) VALUES (?)";
+    "INSERT INTO grant_leave (`email_id`, `roll_no`, `l_from`, `l_upto`, `reason`, `permission`) VALUES (?, ?, ?, ?, ?, FALSE)";
   const values = [
-    req.body.Name,
+    req.body.Roll_No + "@iiitdmj.ac.in",
     req.body.Roll_No,
-    req.body.Room_No,
-    req.body.Gender,
-    req.body.Program,
-    req.body.Branch,
-    req.body.Reason_for_leave,
-    req.body.Leave_Duration,
     req.body.From_,
     req.body.Upto_,
-    req.body.Residential_Address,
-    req.body.Contact_No,
-    req.body.Contact_No_of_Parents,
+    req.body.Reason_for_leave,
   ];
+
   try {
-    db.query(sql, [values], (err, data) => {
-      if (err) return res.json(err);
-      else {
+    db.query(sql, values, (err, data) => {
+      if (err) {
+        console.error("Error in leave application query:", err);
+        return res.json(err);
+      } else {
+        console.log("Leave application successfully submitted");
         res.json("Application successfully submitted");
       }
     });
   } catch (error) {
     console.log(error);
   }
+});
+
+app.get("/admin/getstudents", (req, res) => {
+  const sql = "SELECT * FROM student";
+  db.query(sql, (err, data) => {
+    try {
+      if (err) return res.json(err);
+      return res.json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 });
 
 app.get("/", (req, res) => {

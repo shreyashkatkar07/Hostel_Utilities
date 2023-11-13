@@ -19,6 +19,7 @@ const FileComplaint = () => {
     image: "",
     roll_no: "",
   });
+  console.log(complaint)
 
   const handleChange = (e) => {
     setComplaint((prev) => ({ ...prev, [e.target.name]: e.target.value }));
