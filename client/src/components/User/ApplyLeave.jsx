@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import homeimg from "./../../assets/svg/Home-white.png";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ApplyLeave = () => {
   let navigate = useNavigate();
@@ -20,13 +21,13 @@ const ApplyLeave = () => {
     Program: "",
     Branch: "",
     Reason_for_leave: "",
-    Leave_Duration: "",
     From_: "",
     Upto_: "",
     Residential_Address: "",
     Contact_No: "",
     Contact_No_of_Parents: "",
   });
+  // console.log(newLeave)
 
   const handleChange = (e) => {
     setNewLeave((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -83,51 +84,55 @@ const ApplyLeave = () => {
               }}
             >
               <div className="main-content text-white p-2 text-2xl  !!!!!!!!!!!!!max-sm:{flex flex-col justify-center }">
-                <form action="#" method="post">
+                <form onSubmit={handleSubmit} method="post">
                   <p className="py-3">Application No.: XYZ123</p>
                   <div className="n-rlno-rmno py-2 flex justify-between flex-wrap">
                     <div className="name my-5">
-                      <label htmlFor="name">Name: </label>
+                      <label htmlFor="Name">Name: </label>
                       <input
                         type="text"
-                        name="name"
-                        id="name"
+                        name="Name"
+                        id="Name"
                         style={{ borderRadius: "10px" }}
                         className="rounded-md w-[19.5rem] p-2 mx-1 text-black"
                         placeholder="Enter your name"
+                        onChange={handleChange}
                         required
                       />
                     </div>
                     <div className="rollno my-5">
-                      <label htmlFor="rollno">Roll No.: </label>
+                      <label htmlFor="Roll_No">Roll No.: </label>
                       <input
                         type="text"
-                        name="rollno"
-                        id="rollno"
+                        name="Roll_No"
+                        id="Roll_No"
                         className="rounded-md p-2 w-[12rem] mx-1 text-black"
                         placeholder="e.g. 22bcs001"
+                        onChange={handleChange}
                         required
                       />
                     </div>
                     <div className="roomno my-5">
-                      <label htmlFor="roomno">Room No.: </label>
+                      <label htmlFor="Room_No">Room No.: </label>
                       <input
                         type="text"
-                        name="roomno"
-                        id="roomno"
+                        name="Room_No"
+                        id="Room_No"
                         className="rounded-md p-2 w-[9rem] mx-1 text-black"
                         placeholder="e.g. X-101"
+                        onChange={handleChange}
                         required
                       />
                     </div>
                   </div>
                   <div className="ge-pr-br flex justify-between flex-wrap">
                     <div className="gender my-5">
-                      <label htmlFor="gender">Gender: </label>
+                      <label htmlFor="Gender">Gender: </label>
                       <select
-                        name="gender"
-                        id="gender"
+                        name="Gender"
+                        id="Gender"
                         className="rounded-md p-2 w-[15rem] text-black mx-1"
+                        onChange={handleChange}
                         required
                       >
                         <option value="none">Select your gender</option>
@@ -138,11 +143,12 @@ const ApplyLeave = () => {
                       </select>
                     </div>
                     <div className="program my-5">
-                      <label htmlFor="program">Program: </label>
+                      <label htmlFor="Program">Program: </label>
                       <select
-                        name="program"
-                        id="program"
+                        name="Program"
+                        id="Program"
                         className="rounded-md p-2 w-[15rem] text-black mx-1"
+                        onChange={handleChange}
                         required
                       >
                         <option value="none">Select Discipline</option>
@@ -154,11 +160,12 @@ const ApplyLeave = () => {
                       </select>
                     </div>
                     <div className="branch my-5">
-                      <label htmlFor="branch">Branch: </label>
+                      <label htmlFor="Branch">Branch: </label>
                       <select
-                        name="branch"
-                        id="branch"
+                        name="Branch"
+                        id="Branch"
                         className="rounded-md p-2 w-[13rem] text-black mx-1"
+                        onChange={handleChange}
                         required
                       >
                         <option value="none">Select Branch</option>
@@ -173,14 +180,15 @@ const ApplyLeave = () => {
                     </div>
                   </div>
                   <div className="realea flex my-7">
-                    <label htmlFor="reason" className="me-2">
+                    <label htmlFor="Reason_for_leave" className="me-2">
                       Reason for leave:
                     </label>
                     <textarea
-                      name="reason"
-                      id="reason"
+                      name="Reason_for_leave"
+                      id="Reason_for_leave"
                       placeholder="Type reason here..."
                       className="rounded-md p-2 text-black w-[85%] mx-1"
+                      onChange={handleChange}
                       required
                     ></textarea>
                   </div>
@@ -190,60 +198,65 @@ const ApplyLeave = () => {
                     </label>
                     <div className="duratn flex flex-wrap max-md:justify-center">
                       <div className="ldfm md:mx-7 max-md:mx-2 max-md:my-3">
-                        <label htmlFor="ldfrom">From </label>
+                        <label htmlFor="From_">From </label>
 
                         <input
                           type="date"
-                          name="ldfrom"
-                          id="ldfrom"
+                          name="From_"
+                          id="From_"
                           className="rounded-md p-2 w-[12rem] text-black mx-1"
+                          onChange={handleChange}
                           required
                         />
                       </div>
                       <div className="ldupto max-md:{my-2} max-md:mx-2">
-                        <label htmlFor="ldupto">Upto </label>
+                        <label htmlFor="Upto_">Upto </label>
                         <input
                           type="date"
-                          name="ldupto"
-                          id="ldupto"
+                          name="Upto_"
+                          id="Upto_"
                           className="rounded-md p-2 w-[12rem] text-black mx-1"
+                          onChange={handleChange}
                           required
                         />
                       </div>
                     </div>
                   </div>
                   <div className="realea flex my-9 me-2">
-                    <label htmlFor="resadd" className="">
+                    <label htmlFor="Residential_Address" className="">
                       Residential Address:
                     </label>
                     <textarea
-                      name="resadd"
-                      id="resadd"
+                      name="Residential_Address"
+                      id="Residential_Address"
                       placeholder="Enter address here..."
                       className="rounded-md p-2 text-black w-[85%] mx-1"
+                      onChange={handleChange}
                     ></textarea>
                   </div>
                   <div className="mobno my-10 flex flex-wrap ">
                     <div className="name me-[20rem] flex max-md:items-center">
-                      <label htmlFor="contno">Contact No.: </label>
+                      <label htmlFor="Contact_No">Contact No.: </label>
                       <input
                         type="text"
-                        name="contno"
-                        id="contno"
+                        name="Contact_No"
+                        id="Contact_No"
                         className="rounded-md p-2 w-[14rem] text-black mx-1 max-md:h-[3rem] max-md:mx-4 max-md:items-center"
                         placeholder="Enter mobile no."
+                        onChange={handleChange}
                         required
                       />
                     </div>
 
                     <div className="contnopa max-md:my-6 ">
-                      <label htmlFor="contnopa">Contact No. of Parents: </label>
+                      <label htmlFor="Contact_No_of_Parents">Contact No. of Parents: </label>
                       <input
                         type="text"
-                        name="contnopa"
-                        id="contnopa"
+                        name="Contact_No_of_Parents"
+                        id="Contact_No_of_Parents"
                         className="rounded-md p-2 w-[14rem] text-black mx-1"
                         placeholder="Enter mobile no."
+                        onChange={handleChange}
                         required
                       />
                     </div>
@@ -256,6 +269,7 @@ const ApplyLeave = () => {
                       value="agreement"
                       required
                       style={{ width: "25px", height: "25px" }}
+                      onChange={handleChange}
                     />
                     <label htmlFor="agreement">
                       {" "}

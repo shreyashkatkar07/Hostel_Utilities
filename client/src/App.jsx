@@ -39,7 +39,7 @@ function App() {
   //   }
   // }, []);
 
-  const [currentUserType, setCurrentUserType] = useState("");
+  const [currentUserType, setCurrentUserType] = useState("student");
 
   const handleRoleChange = (role) => {
     setCurrentUserType(role);
