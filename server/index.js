@@ -85,7 +85,7 @@ app.delete("/user/delcomplaint/:id", (req, res) => {
   const sql = "DELETE FROM complaint WHERE c_id = ?";
   db.query(sql, compId, (err, data) => {
     if (err) return res.json(err);
-    return res.json("Book deleted successfully");
+    return res.json("Complaint deleted successfully");
   });
 });
 
@@ -94,16 +94,28 @@ app.get("/user/checkoffcomplaint/:id", (req, res) => {
   const sql = "UPDATE complaint SET stud_flag = '1' WHERE complaint.c_id = ? ";
   db.query(sql, compId, (err, data) => {
     if (err) return res.json(err);
-    return res.json("Checked off successfully");
+    return res.json("Checked off successfully from user side");
   });
 });
 
 app.get("/admin/checkoffcomplaint/:id", (req, res) => {
   const compId = req.params.id;
-  const sql = "UPDATE complaint SET staff_flag = '1' WHERE complaint.c_id = ? ";
-  db.query(sql, compId, (err, data) => {
-    if (err) return res.json(err);
-    return res.json("Checked off successfully");
+  const sql1 =
+    "UPDATE complaint SET staff_flag = '1' WHERE complaint.c_id = ? ";
+  const sql2 = "UPDATE complaint SET r_time = CURRENT_TIME";
+  db.query(sql1, compId, (err1, data1) => {
+    if (err1) {
+      return res.json(err1);
+    } else {
+      // If the first query is successful, execute the second query
+      db.query(sql2, compId, (err2, data2) => {
+        if (err2) {
+          return res.json(err2);
+        } else {
+          res.json("Complaint resolved");
+        }
+      });
+    }
   });
 });
 
@@ -122,27 +134,15 @@ app.get("/user/mycomplaints", (req, res) => {
   }
 });
 
-app.get("/user/guestroombook", (req, res) => {
+app.post("/user/guestroombook", (req, res) => {
   const sql =
-    "INSERT INTO room ( `Hostel`, `Name`, `Gender`, `Relationship`, `NumberOfPersons`, `PermanentAddress`, `ContactAddress`, `PhoneNo`, `EmailId`, `CheckIn`, `CheckOut`) VALUES (?)";
-  const values = [
-    req.body.Hostel,
-    req.body.Name,
-    req.body.Gender,
-    req.body.Relationship,
-    req.body.NumberOfPersons,
-    req.body.PermanentAddress,
-    req.body.ContactAddress,
-    req.body.PhoneNo,
-    req.body.EmailId,
-    req.body.CheckIn,
-    req.body.CheckOut,
-  ];
+    "INSERT INTO guest_room (`room_no`,`g_from`,`g_upto`,`status`) VALUES (? ,?,?,0)";
+  const values = [req.body.RoomNo, req.body.CheckIn, req.body.CheckOut];
   try {
-    db.query(sql, [values], (err, data) => {
+    db.query(sql, values, (err, data) => {
       if (err) return res.json(err);
       else {
-        res.json("Application successfully submitted");
+        res.json("Room application successfully submitted");
       }
     });
   } catch (error) {
@@ -174,6 +174,18 @@ app.post("/user/leaveapplication", (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+app.get("/admin/grantleave", (req, res) => {
+  const sql = "SELECT * FROM grant_leave";
+  db.query(sql, (err, data) => {
+    try {
+      if (err) return res.json(err);
+      return res.json(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 });
 
 app.get("/admin/getstudents", (req, res) => {

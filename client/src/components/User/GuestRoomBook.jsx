@@ -3,6 +3,7 @@ import homeimg from "./../../assets/svg/Home-white.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const GuestRoomBook = () => {
   let navigate = useNavigate();
@@ -13,7 +14,7 @@ const GuestRoomBook = () => {
   }, []);
 
   const [newRoom, setNewRoom] = useState({
-    Hostel: "",
+    RoomNo: "",
     Name: "",
     Gender: "",
     Relationship: "",
@@ -87,27 +88,14 @@ const GuestRoomBook = () => {
                 style={{ fontSize: "x-large" }}
               >
                 <div>
-                  <label htmlFor="hostel">Hostel:</label>
-                  <select
-                    name="hostel"
-                    id="hostel"
-                    style={{
-                      textAlign: "center",
-                      width: "25%",
-                      marginLeft: "0.5vw",
-                      minWidth: "122px",
-                      borderRadius: "10px",
-                      color: "black",
-                    }}
+                  <label htmlFor="Hostel">Room No:</label>
+                  <input
+                    name="RoomNo"
+                    id="RoomNo"
+                    className="w-[25%] px-2 mx-2 text-black"
+                    style={{ borderRadius: "10px", width: "30%" }}
                     onChange={handleChange}
-                  >
-                    <option value="" disabled selected hidden>
-                      Choose your hostel
-                    </option>
-                    <option value="hall1">Hall 1</option>
-                    <option value="hall3">Hall 3</option>
-                    <option value="hall4">Hall 4</option>
-                  </select>
+                  ></input>
                 </div>
                 <br />
                 <div className="grid grid-cols-2 gap-6">
@@ -145,7 +133,7 @@ const GuestRoomBook = () => {
                       }}
                       onChange={handleChange}
                     >
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled hidden>
                         Select your gender
                       </option>
                       <option value="male">Male</option>
@@ -250,32 +238,32 @@ const GuestRoomBook = () => {
                   </div>
                   <div className=" flex ">
                     <label
-                      htmlFor="checkIn"
+                      htmlFor="CheckIn"
                       className="w-[25%] my-2"
                       style={{ minWidth: "114px" }}
                     >
                       Check in:
                     </label>
                     <input
-                      type="datetime-local"
-                      name="ldfrom"
-                      id="ldfrom"
+                      type="date"
+                      name="CheckIn"
+                      id="CheckIn"
                       className="rounded-md p-2 w-[12rem] text-black mx-1"
                       onChange={handleChange}
                     />
                   </div>
                   <div className=" flex ">
                     <label
-                      htmlFor="checkOut"
+                      htmlFor="CheckOut"
                       className="w-[25%] my-2"
                       style={{ minWidth: "114px" }}
                     >
                       Check out:
                     </label>
                     <input
-                      type="datetime-local"
-                      name="ldfrom"
-                      id="ldfrom"
+                      type="date"
+                      name="CheckOut"
+                      id="CheckOut"
                       className="rounded-md p-2 w-[12rem] text-black mx-1"
                       onChange={handleChange}
                     />
