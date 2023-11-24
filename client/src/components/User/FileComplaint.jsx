@@ -77,8 +77,8 @@ const FileComplaint = () => {
               className="px-6 py-4"
               style={{ fontSize: "x-large" }}
             >
-              <div>Complaint No. : XYZ123</div>
-              <br />
+              {/* <div>Complaint No. : XYZ123</div>
+              <br /> */}
               <div className="flex">
                 <div className="w-[50%]">
                   <label htmlFor="category">Category:</label>
@@ -108,7 +108,7 @@ const FileComplaint = () => {
                     type="text"
                     name="roll_no"
                     id="roll_no"
-                    placeholder="ex:  A-403"
+                    placeholder="ex: 22bxx001"
                     style={{
                       marginLeft: "0.5vw",
                       width: "25%",
@@ -145,7 +145,7 @@ const FileComplaint = () => {
               <div>
                 <label>Complaint photo/video :</label>&nbsp;&nbsp;
                 <input
-                  type="text"
+                  type="file"
                   name="image"
                   id="image"
                   placeholder="ex:  A-403"
@@ -166,7 +166,7 @@ const FileComplaint = () => {
               <br />
               <center>
                 <button
-                  className=" bg-blue-600 hover:bg-blue-700"
+                  className="bg-blue-600 hover:bg-blue-700"
                   type="submit"
                   style={{
                     // backgroundColor: "#3b82f6",

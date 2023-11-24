@@ -15,6 +15,7 @@ const GuestRoomBook = () => {
 
   const [newRoom, setNewRoom] = useState({
     RoomNo: "",
+    RollNo: "",
     Name: "",
     Gender: "",
     Relationship: "",
@@ -87,25 +88,49 @@ const GuestRoomBook = () => {
                 className="px-6 py-4"
                 style={{ fontSize: "x-large" }}
               >
-                <div>
-                  <label htmlFor="Hostel">Room No:</label>
-                  <input
-                    name="RoomNo"
-                    id="RoomNo"
-                    className="w-[25%] px-2 mx-2 text-black"
-                    style={{ borderRadius: "10px", width: "30%" }}
-                    onChange={handleChange}
-                  ></input>
-                </div>
-                <br />
+               
                 <div className="grid grid-cols-2 gap-6">
+                <div className=" flex ">
+                    <label
+                      htmlFor="RollNo"
+                      className="w-[25%]"
+                      style={{ minWidth: "114px" }}
+                    >
+                      Roll No.:
+                    </label>
+                    <input
+                      type="text"
+                      name="RollNo"
+                      id="RollNo"
+                      style={{ borderRadius: "10px", width: "70%" }}
+                      className="text-black p-1"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className=" flex ">
+                    <label
+                      htmlFor="RoomNo"
+                      className="w-[25%]"
+                      style={{ minWidth: "114px" }}
+                    >
+                      Room No.:
+                    </label>
+                    <input
+                      type="text"
+                      name="RoomNo"
+                      id="RoomNo"
+                      style={{ borderRadius: "10px", width: "70%" }}
+                      className="text-black p-1"
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className=" flex ">
                     <label
                       htmlFor="firstName"
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
-                      Name:{" "}
+                      Guardian Name:{" "}
                     </label>
                     <input
                       type="text"
@@ -117,7 +142,7 @@ const GuestRoomBook = () => {
                   </div>
                   <div className=" flex ">
                     <label
-                      htmlFor="gender"
+                      htmlFor="Gender"
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
@@ -125,7 +150,7 @@ const GuestRoomBook = () => {
                     </label>
                     <select
                       name="Gender"
-                      id="gender"
+                      id="Gender"
                       style={{
                         borderRadius: "10px",
                         color: "black",
@@ -133,7 +158,7 @@ const GuestRoomBook = () => {
                       }}
                       onChange={handleChange}
                     >
-                      <option value="" disabled hidden>
+                      <option value="none">
                         Select your gender
                       </option>
                       <option value="male">Male</option>
@@ -144,7 +169,7 @@ const GuestRoomBook = () => {
                   </div>
                   <div className=" flex ">
                     <label
-                      htmlFor="relationship"
+                      htmlFor="Relationship"
                       className="w-[25%]"
                       style={{ minWidth: "114px" }}
                     >
@@ -152,6 +177,7 @@ const GuestRoomBook = () => {
                     </label>
                     <input
                       type="text"
+                      name="Relationship"
                       style={{ borderRadius: "10px", width: "70%" }}
                       className="text-black p-1"
                       onChange={handleChange}

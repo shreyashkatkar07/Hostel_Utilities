@@ -15,7 +15,7 @@ const SideNav = (props) => {
         id="navi"
         className={`bg-white text-gray-800 md:w-[15vw] md:block fixed w-[20vw] h-[100%] ${
           props.isOpen
-            ? " block fixed md:static left-0 h-[100vh] pt-0 z-50 duration-300 overflow-hidden w-full"
+            ? " block fixed left-0 h-[100vh] pt-0 z-50 duration-300 overflow-hidden w-full"
             : " fixed md:left-0 left-[-100vw] "
         }`}
       >

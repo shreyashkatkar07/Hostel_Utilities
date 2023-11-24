@@ -59,8 +59,8 @@ const LeaveApproval = () => {
                 <p>Roll No : {leave.roll_no}</p>
                 <br />
                 <div className="flex justify-between">
-                  <p>From : {leave.l_from}</p>
-                  <p className=" pr-20">To : {leave.l_upto}</p>
+                  <p>From : {leave.l_from.slice(0, 10)} {leave.l_from.slice(11, 19)} </p>
+                  <p className=" pr-20">To : {leave.l_upto.slice(0, 10)} {leave.l_upto.slice(11, 19)}</p>
                 </div>
                 <br />
                 <p>Reason for leave : {leave.reason}</p>

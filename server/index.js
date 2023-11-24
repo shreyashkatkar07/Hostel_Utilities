@@ -153,14 +153,24 @@ app.get("/user/mycomplaints", (req, res) => {
 });
 
 app.post("/user/guestroombook", (req, res) => {
-  const sql =
-    "INSERT INTO guest_room (`room_no`,`g_from`,`g_upto`,`status`) VALUES (? ,?,?,0)";
-  const values = [req.body.RoomNo, req.body.CheckIn, req.body.CheckOut];
+  const sql1 =
+    "INSERT INTO guest_room (`room_no`,`g_from`,`g_upto`) VALUES (? ,?,?)";
+    const sql2 ="INSERT INTO guardian (roll_no, name, relationship, sex, room_no) VALUES (?, ?, ?, ?, ? )";
+  const values1 = [req.body.RoomNo, req.body.CheckIn, req.body.CheckOut];
+  const values2 = [req.body.RollNo, req.body.Name, req.body.Relationship, req.body.Gender, req.body.RoomNo];
   try {
-    db.query(sql, values, (err, data) => {
-      if (err) return res.json(err);
-      else {
-        res.json("Room application successfully submitted");
+    db.query(sql1, values1, (err, data) => {
+      if (err) {
+        return res.json(err);
+      } else {
+        // If the first query is successful, execute the second query
+        db.query(sql2, values2, (err1, data1) => {
+          if (err1) {
+            return res.json(err1);
+          } else {
+            res.json("Room booked");
+          }
+        });
       }
     });
   } catch (error) {
@@ -207,7 +217,7 @@ app.get("/admin/grantleave", (req, res) => {
 });
 
 app.get("/admin/getcomplaints", (req, res) => {
-  const sql = "SELECT * FROM guest_room";
+  const sql = "SELECT * FROM complaint";
   db.query(sql, (err, data) => {
     try {
       if (err) return res.json(err);
@@ -231,9 +241,9 @@ app.get("/admin/getstudents", (req, res) => {
 });
 
 app.get("/admin/getrooms", (req, res) => {
-  const sql =
-    "SELECT g.roll_no, g.name, g.room_no, s.par_phone FROM guardian g INNER JOIN student s ON g.roll_no = s.roll_no WHERE g.room_no IN (SELECT r.room_no FROM guest_room r WHERE status = 0)";
-  db.query(sql, (err, data) => {
+  const sql1 =
+    "SELECT g.roll_no, g.name, g.room_no, s.par_phone FROM guardian g INNER JOIN student s ON g.roll_no = s.roll_no WHERE g.room_no IN (SELECT r.room_no FROM guest_room r)";
+  db.query(sql1, (err, data) => {
     try {
       if (err) return res.json(err);
       return res.json(data);
