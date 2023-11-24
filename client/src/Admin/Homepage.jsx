@@ -71,7 +71,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="cards h-[420px] p-10">
-            <Link to="/Admin/GuestRoomRecords">
+            <Link to="/GuestRoomRecords">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col transition-all duration-300"
                 onMouseEnter={handleShadow2}
@@ -90,7 +90,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="cards h-[420px] p-10">
-            <Link to="/Admin/ComplaintRecords">
+            <Link to="/ComplaintRecords">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col transition-all duration-300"
                 onMouseEnter={handleShadow3}
@@ -109,7 +109,7 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="cards h-[420px]  p-10">
-            <Link to="/Admin/StudentRecords">
+            <Link to="/StudentRecords">
               <div
                 className=" max-w-sm rounded-[40px] overflow-hidden shadow-lg h-[100%] bg-white text-gray-800 min-w-[300px] flex justify-between items-center flex-col transition-all duration-300"
                 onMouseEnter={handleShadow4}

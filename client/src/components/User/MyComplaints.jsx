@@ -64,14 +64,14 @@ const MyComplaints = () => {
               key={complaint.c_id}
               className="comp lg:w-[90%] w-[90%] bg-slate-300 rounded-[30px] lg:p-8 lg:px-14 p-4 px-7 py-4 my-3 flex justify-between items-center md:flex-row flex-col"
             >
-              <div className="md:w-[60%] w-[100%] flex items-center ">
+              <div className="md:w-[70%] w-[100%] flex items-center ">
                 <div className="flex items-center justify-center flex-col lg:px-10 px-6">
                   <p className="">Complaint ID:{complaint.c_id}</p>
-                  <p className="">Complaint Type:{complaint.type}</p>
+                  <p className="">Complaint Type: <br />&nbsp;&nbsp;{complaint.type}</p>
                 </div>
                 <div className="flex items-center justify-center flex-col lg:px-10 px-6">
                   <p className="">DD/MM/YYYY</p>
-                  <p className="">--:--:--</p>
+                  <p className="">{complaint.c_time.slice(0,10)}<br />{complaint.c_time.slice(11,19)}</p>
                 </div>
                 <div className="flex items-center justify-center flex-col lg:px-10 px-6">
                   <p className="">{complaint.description}</p>
