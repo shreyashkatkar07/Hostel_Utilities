@@ -18,11 +18,11 @@ import GuestRoomRecords from "./Admin/GuestRoomRecords";
 import ComplaintRecords from "./Admin/ComplaintRecords";
 import StudentRecords from "./Admin/StudentRecords";
 
-const USER_TYPES = {
-  PUBLIC_USER: "public",
-  NORMAL_USER: "student",
-  ADMIN_USER: "Admin",
-};
+// const USER_TYPES = {
+//   PUBLIC_USER: "public",
+//   NORMAL_USER: "student",
+//   ADMIN_USER: "Admin",
+// };
 
 function App() {
   const [isOp, setIsOp] = useState(true);

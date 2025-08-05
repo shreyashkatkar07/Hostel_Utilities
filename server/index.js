@@ -1,23 +1,30 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const expressSession = require("express-session");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-
-const host = 5000;
+app.use(cors());
 
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  paassword: "",
-  database: "Hostel_Utilities",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME || "Hostel_Utilities",
 });
 
+db.connect((error) => {
+  if (error) {
+    console.error("Error connecting to MySQL database:", error);
+  } else {
+    console.log("Connected to MySQL database!");
+  }
+});
+
+const host = process.env.PORT || 3000;
 app.listen(host, () => {
   console.log(`Server is listening on http://localhost:${host}`);
 });
@@ -30,6 +37,23 @@ app.use(function (req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
+});
+
+app.post("/signup", (req, res) => {
+  const sql =
+    "SELECT * FROM login WHERE username = ? AND password = ? AND role = ?";
+  db.query(
+    sql,
+    [req.body.email, req.body.password, req.body.role],
+    (err, data) => {
+      if (err) {
+        console.error("Error in login query:", err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+      const authToken = req.body.role;
+      return res.json({ Status: "Success", authToken });
+    }
+  );
 });
 
 app.post("/login", (req, res) => {
@@ -129,13 +153,13 @@ app.get("/admin/rejectleave/:id", (req, res) => {
 });
 app.get("/admin/grantleave/:id", (req, res) => {
   const leaveId = req.params.id;
-  const sql = "UPDATE grant_leave SET permission = '1' WHERE grant_leave.leave_id= ? ";
+  const sql =
+    "UPDATE grant_leave SET permission = '1' WHERE grant_leave.leave_id= ? ";
   db.query(sql, leaveId, (err, data) => {
     if (err) return res.json(err);
     return res.json("Granted permission successfully");
   });
 });
-
 
 app.get("/user/mycomplaints", (req, res) => {
   const sql = "SELECT * FROM complaint";
@@ -155,9 +179,16 @@ app.get("/user/mycomplaints", (req, res) => {
 app.post("/user/guestroombook", (req, res) => {
   const sql1 =
     "INSERT INTO guest_room (`room_no`,`g_from`,`g_upto`) VALUES (? ,?,?)";
-    const sql2 ="INSERT INTO guardian (roll_no, name, relationship, sex, room_no) VALUES (?, ?, ?, ?, ? )";
+  const sql2 =
+    "INSERT INTO guardian (roll_no, name, relationship, sex, room_no) VALUES (?, ?, ?, ?, ? )";
   const values1 = [req.body.RoomNo, req.body.CheckIn, req.body.CheckOut];
-  const values2 = [req.body.RollNo, req.body.Name, req.body.Relationship, req.body.Gender, req.body.RoomNo];
+  const values2 = [
+    req.body.RollNo,
+    req.body.Name,
+    req.body.Relationship,
+    req.body.Gender,
+    req.body.RoomNo,
+  ];
   try {
     db.query(sql1, values1, (err, data) => {
       if (err) {

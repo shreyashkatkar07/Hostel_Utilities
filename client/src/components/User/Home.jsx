@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import comp from "./../../assets/svg/Subtract.svg";
 import leave from "./../../assets/svg/Subtract(1).svg";
 import guest from "./../../assets/svg/UsersFour(1).svg";
@@ -11,7 +11,7 @@ const Home = () => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const [shadow1, setShadow1] = useState();
   const [shadow2, setShadow2] = useState();

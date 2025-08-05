@@ -241,7 +241,7 @@ const ApplyLeave = () => {
                         type="text"
                         name="Contact_No"
                         id="Contact_No"
-                        className="rounded-md p-2 w-[14rem] text-black mx-1 max-md:h-[3rem] max-md:mx-4 max-md:items-center"
+                        className="rounded-md p-2 w-[14rem] text-black mx-1  max-md:mx-4 max-md:items-center"
                         placeholder="Enter mobile no."
                         onChange={handleChange}
                         required
@@ -254,7 +254,7 @@ const ApplyLeave = () => {
                         type="text"
                         name="Contact_No_of_Parents"
                         id="Contact_No_of_Parents"
-                        className="rounded-md p-2 w-[14rem] text-black mx-1"
+                        className="rounded-md p-2 w-[14rem] text-black mx-1 md:my-6"
                         placeholder="Enter mobile no."
                         onChange={handleChange}
                         required

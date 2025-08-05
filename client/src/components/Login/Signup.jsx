@@ -1,4 +1,3 @@
-import React from "react";
 import bgImg from "./../../assets/images.jpg";
 
 const Signup = () => {
